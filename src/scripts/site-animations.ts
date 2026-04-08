@@ -81,10 +81,14 @@ function onReady(): void {
   function syncNavAccessibility(menuOpen: boolean): void {
     if (!navState || !navTrigger) return;
     if (mqDesktop.matches) {
-      navState.setAttribute("aria-hidden", "false");
+      navState.removeAttribute("inert");
       navTrigger.setAttribute("aria-expanded", "false");
     } else {
-      navState.setAttribute("aria-hidden", menuOpen ? "false" : "true");
+      if (menuOpen) {
+        navState.removeAttribute("inert");
+      } else {
+        navState.setAttribute("inert", "");
+      }
       navTrigger.setAttribute("aria-expanded", String(menuOpen));
     }
   }
