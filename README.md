@@ -28,13 +28,13 @@ Tel : 07-83-42-76-84
 | Fichier | Description |
 |---|---|
 | `index.html` | Page d'accueil |
-| `emma-rouche-psychologue.php` | Presentation de la psychologue |
-| `cabinet-psychologue-castelneau.php` | Presentation du cabinet |
-| `psychotherapies-adultes.php` | Consultations adultes |
-| `psychotherapies-enfants-adolescents.php` | Consultations enfants et adolescents |
-| `soutien-parental.php` | Soutien parental et familial |
-| `bilan-psychologique.php` | Bilans psychologiques |
-| `tarifs-psychologue.php` | Tarifs des consultations |
+| `emma-rouche-psychologue.html` | Presentation de la psychologue |
+| `cabinet-psychologue-castelneau.html` | Presentation du cabinet |
+| `psychotherapies-adultes.html` | Consultations adultes |
+| `psychotherapies-enfants-adolescents.html` | Consultations enfants et adolescents |
+| `soutien-parental.html` | Soutien parental et familial |
+| `bilan-psychologique.html` | Bilans psychologiques |
+| `tarifs-psychologue.html` | Tarifs des consultations |
 
 ### Assets
 
@@ -50,13 +50,13 @@ site/
 ├── index.html
 ├── main.css
 ├── favicon.png
-├── bilan-psychologique.php
-├── cabinet-psychologue-castelneau.php
-├── emma-rouche-psychologue.php
-├── psychotherapies-adultes.php
-├── psychotherapies-enfants-adolescents.php
-├── soutien-parental.php
-├── tarifs-psychologue.php
+├── bilan-psychologique.html
+├── cabinet-psychologue-castelneau.html
+├── emma-rouche-psychologue.html
+├── psychotherapies-adultes.html
+├── psychotherapies-enfants-adolescents.html
+├── soutien-parental.html
+├── tarifs-psychologue.html
 ├── images/
 │   ├── bubble-notification.svg
 │   ├── cab-ext-2.jpg
