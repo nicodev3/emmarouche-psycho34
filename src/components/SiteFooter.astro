@@ -1,4 +1,6 @@
 ---
+import { Phone } from "@lucide/astro";
+
 interface Props {
   copyrightRange?: string;
 }
@@ -49,8 +51,7 @@ const { copyrightRange = "2016-2019" } = Astro.props;
           <p>34170 Castelnau-le-Lez</p>
         </div>
         <p class="footer-phone">
-          <svg class="icon icon-phone"><use xlink:href="#icon-phone"></use></svg
-          >
+          <Phone class="icon icon-phone" aria-hidden="true" />
           07 83 42 76 84
         </p>
       </section>
@@ -113,7 +114,7 @@ const { copyrightRange = "2016-2019" } = Astro.props;
     letter-spacing: 1px;
   }
   .footer-phone .icon-phone {
-    fill: #afcb88;
+    color: #afcb88;
   }
   .g-footer__container h4,
   .g-footer h3 {

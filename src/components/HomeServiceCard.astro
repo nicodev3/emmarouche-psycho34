@@ -1,0 +1,94 @@
+---
+import { ChevronRight } from "@lucide/astro";
+
+export interface Props {
+  title: string;
+  paragraphs: string[];
+  href: string;
+  linkLabel: string;
+}
+
+const { title, paragraphs, href, linkLabel } = Astro.props;
+---
+
+<article
+  class="home-service-card relative flex h-full min-h-72 flex-col overflow-hidden rounded-2xl border border-stone-200/90 bg-white shadow-[0_4px_24px_-6px_rgba(74,66,76,0.14)] transition-[box-shadow,transform] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_16px_40px_-12px_rgba(74,66,76,0.22)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 focus-within:ring-2 focus-within:ring-[#9e8fa2]/45 focus-within:ring-offset-2 focus-within:outline-none"
+>
+  <div
+    class="h-1 w-full shrink-0 bg-linear-to-r from-[#9e8fa2] via-[#c4b8c7] to-[#afcb88]"
+    aria-hidden="true"
+  />
+  <div
+    class="flex flex-1 flex-col px-5 pb-5 pt-5 md:px-7 md:pb-7 md:pt-6"
+  >
+    <h2 class="home-service-card__title">{title}</h2>
+    <div class="home-service-card__body">
+      {paragraphs.map((text) => (
+        <p>{text}</p>
+      ))}
+    </div>
+    <a
+      href={href}
+      class="btn home-service-card__cta mt-auto inline-flex max-w-full items-center gap-2 rounded-lg pt-[0.85em] pb-[0.75em] align-middle text-[0.95rem] leading-snug no-underline"
+    >
+      <span class="min-w-0 flex-1 text-left">{linkLabel}</span>
+      <ChevronRight
+        class="icon size-[1.05em] shrink-0 opacity-80"
+        aria-hidden="true"
+        size="1.05em"
+      />
+    </a>
+  </div>
+</article>
+
+<style>
+  .home-service-card__title {
+    margin: 0 0 0.85rem;
+    padding: 0;
+    color: #4a424c;
+    font-family: var(--font-satisfy), cursive;
+    font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .home-service-card__body {
+    flex: 1 1 auto;
+    margin-bottom: 1.25rem;
+    color: #574d59;
+    font-family: var(--font-lora), serif;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  @media (min-width: 768px) {
+    .home-service-card__body {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  }
+
+  .home-service-card__body p {
+    margin: 0 0 0.85em;
+    hyphens: auto;
+    text-wrap: pretty;
+  }
+
+  .home-service-card__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .home-service-card__cta {
+    background-image: none;
+    text-shadow: none;
+  }
+
+  .home-service-card__cta:hover .icon {
+    opacity: 1;
+  }
+
+  .home-service-card__cta:focus-visible {
+    outline: 2px solid #9e8fa2;
+    outline-offset: 3px;
+  }
+</style>

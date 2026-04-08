@@ -1,4 +1,5 @@
 ---
+import { Accessibility, Bus, MapPin, Phone } from "@lucide/astro";
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import cabExtExterior from "../assets/images/cab-ext-1.jpg";
@@ -29,9 +30,8 @@ const mapEmbedSrc = googleMapsIframeEmbedUrl();
       </header>
       <div class="has-img-border perch-paragraph">
         <div class="row has-svg-before">
-          <svg class="icon icon-location icon-center"
-            ><use xlink:href="#icon-location"></use></svg
-          ><h2>Adresse du cabinet</h2>
+          <MapPin class="icon icon-location icon-center" aria-hidden="true" />
+          <h2>Adresse du cabinet</h2>
           <p>25 avenue Aristide Briand</p>
 
           <p>Bâtiment B.</p>
@@ -44,9 +44,8 @@ const mapEmbedSrc = googleMapsIframeEmbedUrl();
           </p>
         </div>
         <div class="row has-svg-before">
-          <svg class="icon icon-transport icon-center"
-            ><use xlink:href="#icon-transport"></use></svg
-          ><h2>Venir au cabinet</h2>
+          <Bus class="icon icon-transport icon-center" aria-hidden="true" />
+          <h2>Venir au cabinet</h2>
           <p><strong>Accessible en transport en commun </strong>:&nbsp;</p>
 
           <p>
@@ -74,16 +73,16 @@ const mapEmbedSrc = googleMapsIframeEmbedUrl();
           <p><br /></p>
         </div>
         <div class="row has-svg-before">
-          <svg class="icon icon-phone icon-center"
-            ><use xlink:href="#icon-phone"></use></svg
-          ><h2>Prendre rendez-vous</h2>
+          <Phone class="icon icon-phone icon-center" aria-hidden="true" />
+          <h2>Prendre rendez-vous</h2>
           <p>0783427684</p>
           <p>erouche-psycho34@outlook.fr</p>
         </div>
         <div class="row has-svg-before">
-          <svg class="icon icon-disabled icon-center"
-            ><use xlink:href="#icon-disabled"></use></svg
-          ><h2>Accès personnes en situation de handicap</h2>
+          <Accessibility
+            class="icon icon-disabled icon-center"
+            aria-hidden="true"
+          /><h2>Accès personnes en situation de handicap</h2>
           <p>
             Je me déplace à domicile pour les personnes en situation de
             handicap.

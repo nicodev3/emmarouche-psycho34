@@ -1,4 +1,6 @@
 ---
+import { Clock, House, Menu, Phone } from "@lucide/astro";
+
 interface Props {
   pageH1: string;
   scheduleText: string;
@@ -19,28 +21,22 @@ const { pageH1, scheduleText } = Astro.props;
         aria-expanded="false"
         aria-controls="nav_state"
       >
-        <svg class="icon icon-burger" aria-hidden="true">
-          <use xlink:href="#icon-burger"></use>
-        </svg>
+        <Menu class="icon icon-burger" aria-hidden="true" />
       </button>
     </div>
     <div class="header-span header-span--adress">
-      <svg class="icon icon-home">
-        <use xlink:href="#icon-home"></use>
-      </svg>
+      <House class="icon icon-home" aria-hidden="true" />
       <span class="header-span__para"
         >25 avenue Aristide Briand 34170 Castelnau-le-Lez</span
       >
     </div>
     <div class="header-span header-span--time">
-      <svg class="icon icon-clock">
-        <use xlink:href="#icon-clock"></use>
-      </svg>
+      <Clock class="icon icon-clock" aria-hidden="true" />
       <span class="header-span__para">{scheduleText}</span>
     </div>
     <div class="header-span header-span--tel">
       <span class="header-tel">
-        <svg class="icon icon-phone"><use xlink:href="#icon-phone"></use></svg>
+        <Phone class="icon icon-phone" aria-hidden="true" />
         <span>07-83-42-76-84</span>
       </span>
     </div>

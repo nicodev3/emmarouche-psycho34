@@ -222,33 +222,25 @@ strong {
   display: inline-block;
   width: 1em;
   height: 1em;
-  stroke-width: 0;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.icon.lucide {
+  fill: none;
   stroke: currentColor;
-  fill: currentColor;
 }
 .icon-burger {
   display: block;
   width: 6em;
   height: 6em;
   transition: all 0.4s;
-  fill: #fff;
+  color: #fff;
 }
 @media (max-width: 47.99em) {
   .icon-burger {
     width: clamp(3rem, 12vw, 4.75rem);
     height: clamp(3rem, 12vw, 4.75rem);
   }
-}
-.icon-plus {
-  position: absolute;
-  top: -1em;
-  right: -0.7em;
-  width: 1.9em;
-  height: 1.9em;
-  padding: 0.2em 0.3em 0.1em;
-  border-bottom-left-radius: 10px;
-  background: #fcfcfc;
-  fill: #afcb88;
 }
 .round-icon {
   display: -ms-flexbox;
@@ -269,12 +261,12 @@ strong {
 .round-icon .icon-phone {
   width: 1.4em;
   height: 1.4em;
-  fill: #7c6e7f;
+  color: #7c6e7f;
 }
 .icon-center {
   width: 2em;
   height: 2em;
-  fill: #afcb88;
+  color: #afcb88;
 }
 .icon-arrow-down {
   width: 0.8em;
@@ -473,37 +465,6 @@ figure > img {
 .home-text p {
   margin: 0.3em;
   font-size: 1.1em;
-}
-.home-block p {
-  margin-bottom: 1em;
-  padding-left: 2.85714%;
-  padding-right: 2.85714%;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
-}
-.home-block .btn {
-  position: absolute;
-  right: 2em;
-  bottom: 2em;
-}
-.home-block {
-  position: relative;
-  min-height: 28em;
-  margin-bottom: 4em;
-  padding: 0 0 1em;
-  border-bottom-right-radius: 20px;
-  background: #fff;
-  box-shadow: 0 8px 10px -10px #777;
-}
-.home-block,
-.home-block h2 {
-  border-top-left-radius: 20px;
-}
-.home-block h2 {
-  margin: 0 0 1.5em;
-  padding-left: 2.85714%;
-  font-size: 1.7em;
 }
 .home-h2 {
   position: relative;
@@ -797,7 +758,7 @@ figure > img {
 .header-span .icon-home {
   width: 2em;
   height: 2em;
-  fill: #bfd5a0;
+  color: #bfd5a0;
 }
 .header-tel {
   padding: 1em 2em 0.8em;
@@ -816,7 +777,7 @@ figure > img {
 }
 .header-tel .icon-phone {
   margin-right: 1em;
-  fill: #7c6e7f;
+  color: #7c6e7f;
 }
 .page-h1 {
   position: absolute;
@@ -905,6 +866,7 @@ figure > img {
     left: 0;
     width: 100%;
     height: 75px;
+    overflow: visible;
     background: none;
     box-shadow: 0 0 15px 0 #7c6e7f;
     z-index: 100;
@@ -915,6 +877,7 @@ figure > img {
 }
 @media (min-width: 48em) {
   .nav__ul {
+    overflow: visible;
     background: none;
     max-width: 1200px;
     margin-left: auto;
@@ -936,6 +899,7 @@ figure > img {
 }
 @media (min-width: 48em) {
   .nav__ul__li {
+    overflow: visible;
     border: none;
     display: inline-block;
     background: none;
@@ -1005,7 +969,7 @@ figure > img {
   }
 }
 .nav-trigger--on .icon-burger {
-  fill: #fff;
+  color: #fff;
 }
 .has-dropdown {
   position: relative;

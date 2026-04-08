@@ -2,7 +2,6 @@
 import { Font } from "astro:assets";
 import "../styles/tailwind.css";
 import "../styles/main.css";
-import SvgSprite from "../components/SvgSprite.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteNav from "../components/SiteNav.astro";
 import SiteFooter from "../components/SiteFooter.astro";
@@ -80,7 +79,6 @@ const geoIcbm = `${LOCAL_BUSINESS.latitude};${LOCAL_BUSINESS.longitude}`;
     <link rel="icon" type="image/png" href="/favicon.png" />
   </head>
   <body>
-    <SvgSprite />
     <div class="page-wrapper">
       <SiteHeader pageH1={pageH1} scheduleText={scheduleText} />
       <SiteNav />

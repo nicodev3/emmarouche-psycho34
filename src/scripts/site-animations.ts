@@ -67,7 +67,9 @@ function initNavDropdown(): void {
   });
 
   document.addEventListener("click", (e) => {
-    if (!container.contains(e.target as Node)) close();
+    const t = e.target;
+    if (!(t instanceof Node)) return;
+    if (!container.contains(t)) close();
   });
 }
 

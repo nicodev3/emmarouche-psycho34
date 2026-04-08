@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HomeServiceCard from "../components/HomeServiceCard.astro";
 ---
 
 <BaseLayout
@@ -24,29 +25,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         détail sur ce site
       </p>
 
-      <p><br /></p>
-
-      <p>
-        <em
-          >*Je suis actuellement en congés maternité. Les consultations durant
-          mon absence seront assurées par Mme Camille Houillon, d'avril 2018 à
-          juillet 2018 inclus. Elle sera joignable au même numéro, indiqué plus
-          haut. Je reprendrai les consultations le lundi 3 septembre et serai
-          joignable dès le mois d'août pour les planifier. À très bientôt.</em
-        >
-      </p>
-
-      <p><br /></p>
-
-      <p><strong></strong></p>
-
-      <p><strong></strong></p>
-
-      <p><strong></strong></p>
-
-      <p><strong></strong></p>
-
-      <p><strong></strong></p>
     </header>
     <div class="row">
       <div class="home-block-tape has-tape">
@@ -65,83 +43,43 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
     </div>
     <h2 class="home-services">Mes services</h2>
-    <div class="span-6 home-block">
-      <h2>Psychothérapies enfants et adolescents</h2>
-
-      <p>
-        L'approche psychothérapeutique avec les enfants se distingue de celle
-        des adultes par l'utilisation de médiations diverses.
-      </p>
-
-      <p>
-        Vous découvrirez sur la page dédiée à la psychothérapie d'enfants et
-        d'adolescents les raisons qui peuvent vous amener à consulter, ainsi que
-        des détails sur le suivi qu'il est possible de mettre en place.
-      </p>
-      <a href="/psychotherapies-enfants-adolescents.html" class="btn"
-        >Psychothérapies enfants et adolescents<svg class="icon icon-plus"
-          ><use xlink:href="#icon-plus"></use></svg
-        ></a
-      >
-    </div>
-    <div class="span-6--l home-block">
-      <h2>Psychothérapies adultes</h2>
-
-      <p>
-        Je propose au cabinet de Castelnau-le-Lez des psychothérapies
-        d'orientation analytique.
-      </p>
-
-      <p>
-        Les méthodes psychothérapeutiques sont diverses, vous souhaitez
-        peut-être connaître mon approche avant de venir me consulter. Pour en
-        savoir plus sur ma pratique de psychothérapeute, vous pouvez visiter le
-        contenu qui lui est dédié.
-      </p>
-      <a href="/psychotherapies-adultes.html" class="btn"
-        >Psychothérapies adultes<svg class="icon icon-plus"
-          ><use xlink:href="#icon-plus"></use></svg
-        ></a
-      >
-    </div>
-    <div class="span-6 home-block">
-      <h2>Bilans psychologiques</h2>
-
-      <p>
-        Le bilan psychologique permet de donner un point de vue sur les
-        compétences de l'enfant ou de l'adolescent.
-      </p>
-
-      <p>
-        Les tests psychométriques et les tests projectifs sont les outils
-        validés scientifiquement utilisés par le psychologue. Rendez-vous sur la
-        page dédiée aux bilans psychologiques pour davantage d'informations.
-      </p>
-      <a href="/bilan-psychologique.html" class="btn"
-        >Bilans psychologiques<svg class="icon icon-plus"
-          ><use xlink:href="#icon-plus"></use></svg
-        ></a
-      >
-    </div>
-    <div class="row">
-      <div class="span-6--l home-block">
-        <h2>Soutien parental et familial</h2>
-
-        <p>
-          Je propose aux parents et familles un accompagnement et un espace de
-          parole aptes à les soutenir.
-        </p>
-
-        <p>
-          Pour en savoir plus sur le soutien familial et parental, je vous
-          invite à visiter la page qui lui est consacrée.
-        </p>
-        <a href="/soutien-parental.html" class="btn"
-          >Soutien familial et parental<svg class="icon icon-plus"
-            ><use xlink:href="#icon-plus"></use></svg
-          ></a
-        >
-      </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <HomeServiceCard
+      title="Psychothérapies enfants et adolescents"
+      paragraphs={[
+        "L'approche psychothérapeutique avec les enfants se distingue de celle des adultes par l'utilisation de médiations diverses.",
+        "Vous découvrirez sur la page dédiée à la psychothérapie d'enfants et d'adolescents les raisons qui peuvent vous amener à consulter, ainsi que des détails sur le suivi qu'il est possible de mettre en place.",
+      ]}
+      href="/psychotherapies-enfants-adolescents.html"
+      linkLabel="Psychothérapies enfants et adolescents"
+    />
+    <HomeServiceCard
+      title="Psychothérapies adultes"
+      paragraphs={[
+        "Je propose au cabinet de Castelnau-le-Lez des psychothérapies d'orientation analytique.",
+        "Les méthodes psychothérapeutiques sont diverses, vous souhaitez peut-être connaître mon approche avant de venir me consulter. Pour en savoir plus sur ma pratique de psychothérapeute, vous pouvez visiter le contenu qui lui est dédié.",
+      ]}
+      href="/psychotherapies-adultes.html"
+      linkLabel="Psychothérapies adultes"
+    />
+    <HomeServiceCard
+      title="Bilans psychologiques"
+      paragraphs={[
+        "Le bilan psychologique permet de donner un point de vue sur les compétences de l'enfant ou de l'adolescent.",
+        "Les tests psychométriques et les tests projectifs sont les outils validés scientifiquement utilisés par le psychologue. Rendez-vous sur la page dédiée aux bilans psychologiques pour davantage d'informations.",
+      ]}
+      href="/bilan-psychologique.html"
+      linkLabel="Bilans psychologiques"
+    />
+    <HomeServiceCard
+      title="Soutien parental et familial"
+      paragraphs={[
+        "Je propose aux parents et familles un accompagnement et un espace de parole aptes à les soutenir.",
+        "Pour en savoir plus sur le soutien familial et parental, je vous invite à visiter la page qui lui est consacrée.",
+      ]}
+      href="/soutien-parental.html"
+      linkLabel="Soutien familial et parental"
+    />
     </div>
   </section>
 </BaseLayout>
