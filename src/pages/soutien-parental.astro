@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import photoSoutienParental from "../assets/images/photo-site-enfant-3-w800.jpg";
 ---
 
 <BaseLayout
@@ -24,7 +26,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <p><br /></p>
 
         <figure>
-          <img data-image="6" src="/images/photo-site-enfant-3-w800.jpg" />
+          <Image
+            data-image="6"
+            src={photoSoutienParental}
+            alt="Illustration — accompagnement familial et parental"
+            widths={[400, 600, 800, 1200]}
+            sizes="(max-width: 48em) 100vw, 66vw"
+          />
         </figure>
 
         <p><br /></p>

@@ -1,5 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import cabExtExterior from "../assets/images/cab-ext-1.jpg";
+import cabExtParking from "../assets/images/cab-ext-2.jpg";
 
 const mapsSrc =
   "https://maps.googleapis.com/maps/api/js?key=AIzaSyDAOfY1zVWyGTa6cOUovsbY02Q9ub7gJ7s&callback=initMap";
@@ -93,15 +96,19 @@ const mapsSrc =
       <div class="map-container">
         <div id="map"></div>
       </div>
-      <img
+      <Image
         class="img-cab-ext"
-        src="/images/cab-ext-1.jpg"
-        alt="cabinet vue extèrieure"
+        src={cabExtExterior}
+        alt="Cabinet de psychologie — vue extérieure"
+        widths={[400, 800, 1200]}
+        sizes="(max-width: 48em) 100vw, 33vw"
       />
-      <img
+      <Image
         class="img-cab-ext"
-        src="/images/cab-ext-2.jpg"
-        alt="cabinet vue parking"
+        src={cabExtParking}
+        alt="Cabinet de psychologie — vue depuis le parking"
+        widths={[400, 800, 1200]}
+        sizes="(max-width: 48em) 100vw, 33vw"
       />
 
       <div class="has-tape">

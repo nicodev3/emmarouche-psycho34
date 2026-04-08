@@ -11,11 +11,18 @@ const { pageH1, scheduleText } = Astro.props;
     <div class="header-span header-span--logo">
       <span class="logo-emma">Emma Rouché</span>
       <h1 class="page-h1">{pageH1}</h1>
-      <div class="nav-trigger" id="nav_trigger">
-        <svg class="icon icon-burger">
+      <button
+        type="button"
+        class="nav-trigger"
+        id="nav_trigger"
+        aria-label="Ouvrir ou fermer le menu"
+        aria-expanded="false"
+        aria-controls="nav_state"
+      >
+        <svg class="icon icon-burger" aria-hidden="true">
           <use xlink:href="#icon-burger"></use>
         </svg>
-      </div>
+      </button>
     </div>
     <div class="header-span header-span--adress">
       <svg class="icon icon-home">

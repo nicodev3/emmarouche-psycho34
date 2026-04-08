@@ -74,14 +74,79 @@ function initNavDropdown(): void {
 function onReady(): void {
   const navState = document.getElementById("nav_state");
   const navTrigger = document.getElementById("nav_trigger");
+  const mqDesktop = window.matchMedia(NAV_DESKTOP_MEDIA);
+
+  function syncNavAccessibility(menuOpen: boolean): void {
+    if (!navState || !navTrigger) return;
+    if (mqDesktop.matches) {
+      navState.setAttribute("aria-hidden", "false");
+      navTrigger.setAttribute("aria-expanded", "false");
+    } else {
+      navState.setAttribute("aria-hidden", menuOpen ? "false" : "true");
+      navTrigger.setAttribute("aria-expanded", String(menuOpen));
+    }
+  }
+
+  function setMobileMenuOpen(open: boolean): void {
+    if (!navState || !navTrigger) return;
+    navTrigger.classList.toggle("nav-trigger--on", open);
+    navState.classList.toggle("nav--open", open);
+    if (!open) {
+      resetNavDropdown();
+    }
+    document.body.classList.toggle("nav-menu-open", open && !mqDesktop.matches);
+    syncNavAccessibility(open);
+  }
+
   if (navTrigger && navState) {
+    syncNavAccessibility(false);
+
     navTrigger.addEventListener("click", () => {
-      const wasOpen = navState.classList.contains("nav--open");
-      navTrigger.classList.toggle("nav-trigger--on");
-      navState.classList.toggle("nav--open");
-      if (wasOpen) {
-        resetNavDropdown();
+      setMobileMenuOpen(!navState.classList.contains("nav--open"));
+    });
+
+    navState.querySelectorAll<HTMLAnchorElement>(".nav__ul a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (!mqDesktop.matches) {
+          setMobileMenuOpen(false);
+        }
+      });
+    });
+
+    document.addEventListener(
+      "click",
+      (e) => {
+        if (mqDesktop.matches || !navState.classList.contains("nav--open")) {
+          return;
+        }
+        const t = e.target as Node;
+        if (navTrigger.contains(t) || navState.contains(t)) {
+          return;
+        }
+        setMobileMenuOpen(false);
+      },
+      true,
+    );
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape" || mqDesktop.matches) {
+        return;
       }
+      const dd = document.querySelector("[data-nav-dropdown]");
+      if (dd?.classList.contains("is-open")) {
+        return;
+      }
+      if (navState.classList.contains("nav--open")) {
+        setMobileMenuOpen(false);
+      }
+    });
+
+    mqDesktop.addEventListener("change", () => {
+      document.body.classList.remove("nav-menu-open");
+      navTrigger.classList.remove("nav-trigger--on");
+      navState.classList.remove("nav--open");
+      resetNavDropdown();
+      syncNavAccessibility(false);
     });
   }
 
