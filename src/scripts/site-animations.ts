@@ -3,15 +3,89 @@ import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 
 gsap.registerPlugin(DrawSVGPlugin);
 
+const NAV_DESKTOP_MEDIA = "(min-width: 48em)";
+
+function resetNavDropdown(): void {
+  const container = document.querySelector<HTMLElement>("[data-nav-dropdown]");
+  const btn = document.getElementById("site-nav-dropdown-consultations-btn");
+  const menu = document.getElementById("site-nav-dropdown-consultations");
+  container?.classList.remove("is-open");
+  btn?.setAttribute("aria-expanded", "false");
+  menu?.setAttribute("inert", "");
+}
+
+function initNavDropdown(): void {
+  const container = document.querySelector<HTMLElement>("[data-nav-dropdown]");
+  const btn = document.getElementById(
+    "site-nav-dropdown-consultations-btn",
+  ) as HTMLButtonElement | null;
+  const menu = document.getElementById("site-nav-dropdown-consultations");
+  if (!container || !btn || !menu) return;
+
+  const mqDesktop = window.matchMedia(NAV_DESKTOP_MEDIA);
+
+  function applyMenuInert(open: boolean): void {
+    if (open) {
+      menu.removeAttribute("inert");
+    } else {
+      menu.setAttribute("inert", "");
+    }
+  }
+
+  function setOpen(open: boolean): void {
+    container.classList.toggle("is-open", open);
+    btn.setAttribute("aria-expanded", String(open));
+    applyMenuInert(open);
+  }
+
+  function close(): void {
+    if (!container.classList.contains("is-open")) return;
+    const active = document.activeElement;
+    const hadFocus =
+      active !== null &&
+      (menu.contains(active) || btn === active);
+    setOpen(false);
+    if (hadFocus) {
+      btn.focus();
+    }
+  }
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setOpen(!container.classList.contains("is-open"));
+  });
+
+  container.addEventListener("mouseenter", () => {
+    if (mqDesktop.matches) setOpen(true);
+  });
+  container.addEventListener("mouseleave", () => {
+    if (mqDesktop.matches) close();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!container.contains(e.target as Node)) close();
+  });
+}
+
 function onReady(): void {
   const navState = document.getElementById("nav_state");
   const navTrigger = document.getElementById("nav_trigger");
   if (navTrigger && navState) {
     navTrigger.addEventListener("click", () => {
+      const wasOpen = navState.classList.contains("nav--open");
       navTrigger.classList.toggle("nav-trigger--on");
       navState.classList.toggle("nav--open");
+      if (wasOpen) {
+        resetNavDropdown();
+      }
     });
   }
+
+  initNavDropdown();
 
   const revealContent = document.getElementById("reveal_content");
   const infoClosed = document.querySelector(".info--closed");
