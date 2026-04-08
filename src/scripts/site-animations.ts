@@ -9,9 +9,14 @@ function resetNavDropdown(): void {
   const container = document.querySelector<HTMLElement>("[data-nav-dropdown]");
   const btn = document.getElementById("site-nav-dropdown-consultations-btn");
   const menu = document.getElementById("site-nav-dropdown-consultations");
+  const mqDesktop = window.matchMedia(NAV_DESKTOP_MEDIA);
   container?.classList.remove("is-open");
   btn?.setAttribute("aria-expanded", "false");
-  menu?.setAttribute("inert", "");
+  if (mqDesktop.matches) {
+    menu?.setAttribute("inert", "");
+  } else {
+    menu?.removeAttribute("inert");
+  }
 }
 
 function initNavDropdown(): void {
@@ -21,56 +26,77 @@ function initNavDropdown(): void {
   ) as HTMLButtonElement | null;
   const menu = document.getElementById("site-nav-dropdown-consultations");
   if (!container || !btn || !menu) return;
+  const containerEl = container;
+  const btnEl = btn;
+  const menuEl = menu;
 
   const mqDesktop = window.matchMedia(NAV_DESKTOP_MEDIA);
 
   function applyMenuInert(open: boolean): void {
+    if (!mqDesktop.matches) {
+      menuEl.removeAttribute("inert");
+      return;
+    }
     if (open) {
-      menu.removeAttribute("inert");
+      menuEl.removeAttribute("inert");
     } else {
-      menu.setAttribute("inert", "");
+      menuEl.setAttribute("inert", "");
     }
   }
 
   function setOpen(open: boolean): void {
-    container.classList.toggle("is-open", open);
-    btn.setAttribute("aria-expanded", String(open));
+    containerEl.classList.toggle("is-open", open);
+    btnEl.setAttribute("aria-expanded", String(open));
     applyMenuInert(open);
   }
 
   function close(): void {
-    if (!container.classList.contains("is-open")) return;
+    if (!containerEl.classList.contains("is-open")) return;
     const active = document.activeElement;
     const hadFocus =
       active !== null &&
-      (menu.contains(active) || btn === active);
+      (menuEl.contains(active) || btnEl === active);
     setOpen(false);
     if (hadFocus) {
-      btn.focus();
+      btnEl.focus();
     }
   }
 
-  btn.addEventListener("click", (e) => {
+  btnEl.addEventListener("click", (e) => {
+    if (!mqDesktop.matches) return;
     e.stopPropagation();
-    setOpen(!container.classList.contains("is-open"));
+    setOpen(!containerEl.classList.contains("is-open"));
   });
 
-  container.addEventListener("mouseenter", () => {
+  containerEl.addEventListener("mouseenter", () => {
     if (mqDesktop.matches) setOpen(true);
   });
-  container.addEventListener("mouseleave", () => {
+  containerEl.addEventListener("mouseleave", () => {
     if (mqDesktop.matches) close();
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
+    if (e.key === "Escape" && mqDesktop.matches) close();
   });
 
   document.addEventListener("click", (e) => {
+    if (!mqDesktop.matches) return;
     const t = e.target;
     if (!(t instanceof Node)) return;
-    if (!container.contains(t)) close();
+    if (!containerEl.contains(t)) close();
   });
+
+  function syncDropdownForViewport(): void {
+    if (!mqDesktop.matches) {
+      menuEl.removeAttribute("inert");
+      containerEl.classList.remove("is-open");
+      btnEl.setAttribute("aria-expanded", "false");
+    } else {
+      applyMenuInert(containerEl.classList.contains("is-open"));
+    }
+  }
+  syncDropdownForViewport();
+  mqDesktop.addEventListener("change", syncDropdownForViewport);
 }
 
 function onReady(): void {
