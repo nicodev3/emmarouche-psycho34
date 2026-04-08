@@ -132,7 +132,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Satisfy, cursive;
+  font-family: var(--font-satisfy);
 }
 h1 {
   display: inline-block;
@@ -208,7 +208,7 @@ h4 {
 }
 p {
   margin: 1.3rem 0;
-  font-family: Lora, serif;
+  font-family: var(--font-lora);
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.2;
@@ -405,7 +405,7 @@ strong {
 .g-page-section li,
 .perch-paragraph li {
   margin-left: 1em;
-  font-family: Lora, serif;
+  font-family: var(--font-lora);
   line-height: 1.8;
   list-style-type: disc;
 }
@@ -711,7 +711,7 @@ figure > img {
 .footer-nav__ul__li a {
   background: none;
   color: #c5bcc7;
-  font-family: Satisfy, cursive;
+  font-family: var(--font-satisfy);
   text-shadow: none;
 }
 @media (min-width: 64em) {
@@ -933,7 +933,7 @@ figure > img {
   top: 38%;
   left: 0.5em;
   color: #afcb88 !important;
-  font-family: Satisfy, cursive;
+  font-family: var(--font-satisfy);
   font-size: 2em !important;
 }
 @media (min-width: 48em) {
@@ -1006,7 +1006,7 @@ figure > img {
   left: 5%;
   margin: 0;
   color: #afcb88;
-  font-family: Lora, serif;
+  font-family: var(--font-lora);
   font-size: 1em;
   font-style: italic;
 }
@@ -1020,7 +1020,7 @@ figure > img {
   right: 0;
   width: 22.4%;
   color: #fff;
-  font-family: Satisfy, cursive;
+  font-family: var(--font-satisfy);
   font-size: 1.5em;
   line-height: 5em;
   text-align: center;
@@ -1110,7 +1110,7 @@ figure > img {
   transition: background 0.2s ease-out;
   background: none;
   color: #7c6e7f;
-  font-family: Satisfy, cursive;
+  font-family: var(--font-satisfy);
   font-size: 1.5rem;
   line-height: 80px;
   text-decoration: none;
@@ -1146,7 +1146,7 @@ figure > img {
   height: 100%;
   padding: 0 1em;
   color: #7c6e7f;
-  font-family: Satisfy, cursive;
+  font-family: var(--font-satisfy);
   font-size: 1.5em;
   line-height: 2.8;
   text-shadow: none;

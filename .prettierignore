@@ -2,5 +2,4 @@ dist
 node_modules
 .astro
 package-lock.json
-**/DrawSVGPlugin.min.js
 README.md

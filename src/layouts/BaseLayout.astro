@@ -1,13 +1,17 @@
 ---
+import { Font } from "astro:assets";
 import "../styles/main.css";
 import SvgSprite from "../components/SvgSprite.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteNav from "../components/SiteNav.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import { getLocalSeoJsonLd, LOCAL_BUSINESS } from "../data/local-seo";
 
 interface Props {
   title: string;
   description?: string;
+  /** Chemin absolu sur le site (ex. /images/cab-ext-2.jpg) ou URL complète */
+  ogImage?: string;
   pageH1: string;
   scheduleText?: string;
   copyrightRange?: string;
@@ -16,10 +20,24 @@ interface Props {
 const {
   title,
   description = "",
+  ogImage = "/images/cab-ext-2.jpg",
   pageH1,
   scheduleText = "Mardi - Mercredi - Vendredi après-midi",
   copyrightRange = "2016-2019",
 } = Astro.props;
+
+const site = Astro.site ?? Astro.url;
+const canonicalPath =
+  Astro.url.pathname === "/index.html" || Astro.url.pathname === "/"
+    ? "/"
+    : Astro.url.pathname;
+const canonicalURL = new URL(canonicalPath, site);
+const absoluteOg =
+  ogImage.startsWith("http://") || ogImage.startsWith("https://")
+    ? ogImage
+    : new URL(ogImage, site).href;
+const jsonLd = JSON.stringify(getLocalSeoJsonLd(site.origin));
+const geoIcbm = `${LOCAL_BUSINESS.latitude};${LOCAL_BUSINESS.longitude}`;
 ---
 
 <!doctype html>
@@ -33,10 +51,31 @@ const {
     <meta name="format-detection" content="telephone=no" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link
-      href="https://fonts.googleapis.com/css?family=Lora%7CSatisfy"
-      rel="stylesheet"
+    <link rel="canonical" href={canonicalURL.href} />
+    <meta name="geo.region" content="FR-34" />
+    <meta
+      name="geo.placename"
+      content={`${LOCAL_BUSINESS.addressLocality}, ${LOCAL_BUSINESS.addressRegion}`}
     />
+    <meta name="geo.position" content={geoIcbm} />
+    <meta name="ICBM" content={geoIcbm} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content={`${LOCAL_BUSINESS.name} — ${LOCAL_BUSINESS.title}`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:image" content={absoluteOg} />
+    <meta property="og:image:alt" content={`Cabinet — ${LOCAL_BUSINESS.name}`} />
+    <meta property="place:location:latitude" content={String(LOCAL_BUSINESS.latitude)} />
+    <meta property="place:location:longitude" content={String(LOCAL_BUSINESS.longitude)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteOg} />
+    <script type="application/ld+json" set:html={jsonLd} />
+    <Font cssVariable="--font-lora" preload />
+    <Font cssVariable="--font-satisfy" />
     <link rel="icon" type="image/png" href="/favicon.png" />
   </head>
   <body>
@@ -49,14 +88,7 @@ const {
       </main>
     </div>
     <SiteFooter copyrightRange={copyrightRange} />
-    <script
-      src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"
-    ></script>
-    <script is:inline src="/js/DrawSVGPlugin.min.js"></script>
-    <script is:inline src="/js/main.js"></script>
+    <script src="../scripts/site-animations.ts"></script>
     <slot name="maps" />
   </body>
 </html>

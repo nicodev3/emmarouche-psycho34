@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://emmarouche-psycho34.com/sitemap-index.xml
