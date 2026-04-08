@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const mapsSrc =
+  "https://maps.googleapis.com/maps/api/js?key=AIzaSyDAOfY1zVWyGTa6cOUovsbY02Q9ub7gJ7s&callback=initMap";
+---
+
+<BaseLayout
+  title="Cabinet psychologue castelneau"
+  pageH1="Cabinet de psychologie de Castelnau-le-Lez"
+>
+  <section class="g-page-section">
+    <div class="span-8">
+      <header class="has-paper-shadow">
+        <h1>Cabinet de psychologie de Castelnau-le-Lez</h1>
+
+        <p>
+          Je vous accueille à mon cabinet de psychologie pour des <a
+            href="/psychotherapies-enfants-adolescents.html"
+            >psychothérapies d'enfants et d'adolescents</a
+          >, des <a href="/psychotherapies-adultes.html"
+            >psychothérapies d'adultes</a
+          >, et <a href="/bilan-psychologique.html">bilans psychologiques</a>.
+        </p>
+      </header>
+      <div class="has-img-border perch-paragraph">
+        <div class="row has-svg-before">
+          <svg class="icon icon-location icon-center"
+            ><use xlink:href="#icon-location"></use></svg
+          ><h2>Adresse du cabinet</h2>
+          <p>25 avenue Aristide Briand</p>
+
+          <p>Bâtiment B.</p>
+
+          <p>34170 Castelnau-le-Lez</p>
+
+          <p>
+            Bâtiment derrière le laboratoire, premier étage, entrée par
+            l’escalier en colimaçon.<br />
+          </p>
+        </div>
+        <div class="row has-svg-before">
+          <svg class="icon icon-transport icon-center"
+            ><use xlink:href="#icon-transport"></use></svg
+          ><h2>Venir au cabinet</h2>
+          <p><strong>Accessible en transport en commun </strong>:&nbsp;</p>
+
+          <p>
+            - Tram ligne 2 / arrêt «Charles De Gaulle» (à 3 minutes à pied).
+          </p>
+
+          <p>- Bus 35 et 36.</p>
+
+          <p><br /></p>
+
+          <p>
+            <strong>Le stationnement</strong> à proximité immédiate est possible mais
+            parfois compliqué.
+          </p>
+
+          <p><br /></p>
+
+          <p>
+            <strong>Parking public du Vicarello</strong> : au centre du village, situé
+            à 10 minutes à pied du cabinet, vous trouverez un parking public facilement
+            accessible (nombreuses places disponibles, 2h gratuites par demi-journée).<br
+            />
+          </p>
+
+          <p><br /></p>
+        </div>
+        <div class="row has-svg-before">
+          <svg class="icon icon-phone icon-center"
+            ><use xlink:href="#icon-phone"></use></svg
+          ><h2>Prendre rendez-vous</h2>
+          <p>0783427684</p>
+          <p>erouche-psycho34@outlook.fr</p>
+        </div>
+        <div class="row has-svg-before">
+          <svg class="icon icon-disabled icon-center"
+            ><use xlink:href="#icon-disabled"></use></svg
+          ><h2>Accès personnes en situation de handicap</h2>
+          <p>
+            Je me déplace à domicile pour les personnes en situation de
+            handicap.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="span-4--l">
+      <div class="map-container">
+        <div id="map"></div>
+      </div>
+      <img
+        class="img-cab-ext"
+        src="/images/cab-ext-1.jpg"
+        alt="cabinet vue extèrieure"
+      />
+      <img
+        class="img-cab-ext"
+        src="/images/cab-ext-2.jpg"
+        alt="cabinet vue parking"
+      />
+
+      <div class="has-tape">
+        <ul>
+          <li>Les consultations ont lieu sur rendez-vous.</li><li>
+            Les séances ont une durée moyenne de 45 minutes.
+          </li><li>
+            La fréquence des séances dépend du besoin individuel. Généralement,
+            les psychothérapies impliquent une consultation hebdomadaire ou
+            bi-mensuelle.
+          </li><li>
+            La durée du suivi est très variable selon les besoins et les
+            problématiques rencontrées. Dans certains cas, quelques séances
+            suffisent.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline slot="maps" src="/js/cabinet-google-map-init.js"></script>
+  <script is:inline slot="maps" async defer src={mapsSrc}></script>
+</BaseLayout>

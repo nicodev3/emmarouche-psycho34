@@ -1,0 +1,62 @@
+---
+import "../styles/main.css";
+import SvgSprite from "../components/SvgSprite.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  pageH1: string;
+  scheduleText?: string;
+  copyrightRange?: string;
+}
+
+const {
+  title,
+  description = "",
+  pageH1,
+  scheduleText = "Mardi - Mercredi - Vendredi après-midi",
+  copyrightRange = "2016-2019",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora%7CSatisfy"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+  </head>
+  <body>
+    <SvgSprite />
+    <div class="page-wrapper">
+      <SiteHeader pageH1={pageH1} scheduleText={scheduleText} />
+      <SiteNav />
+      <main class="g-page-container">
+        <slot />
+      </main>
+    </div>
+    <SiteFooter copyrightRange={copyrightRange} />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"
+    ></script>
+    <script is:inline src="/js/DrawSVGPlugin.min.js"></script>
+    <script is:inline src="/js/main.js"></script>
+    <slot name="maps" />
+  </body>
+</html>

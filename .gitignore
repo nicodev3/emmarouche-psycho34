@@ -1,2 +1,6 @@
 # Dossiers temporaires waybackpack (archives brutes par timestamp)
 20*/
+
+node_modules/
+dist/
+.astro/

@@ -1,0 +1,41 @@
+---
+interface Props {
+  pageH1: string;
+  scheduleText: string;
+}
+const { pageH1, scheduleText } = Astro.props;
+---
+
+<header class="g-header">
+  <div class="g-header-has-container">
+    <div class="header-span header-span--logo">
+      <span class="logo-emma">Emma Rouché</span>
+      <h1 class="page-h1">{pageH1}</h1>
+      <div class="nav-trigger" id="nav_trigger">
+        <svg class="icon icon-burger">
+          <use xlink:href="#icon-burger"></use>
+        </svg>
+      </div>
+    </div>
+    <div class="header-span header-span--adress">
+      <svg class="icon icon-home">
+        <use xlink:href="#icon-home"></use>
+      </svg>
+      <span class="header-span__para"
+        >25 avenue Aristide Briand 34170 Castelnau-le-Lez</span
+      >
+    </div>
+    <div class="header-span header-span--time">
+      <svg class="icon icon-clock">
+        <use xlink:href="#icon-clock"></use>
+      </svg>
+      <span class="header-span__para">{scheduleText}</span>
+    </div>
+    <div class="header-span header-span--tel">
+      <span class="header-tel">
+        <svg class="icon icon-phone"><use xlink:href="#icon-phone"></use></svg>
+        <span>07-83-42-76-84</span>
+      </span>
+    </div>
+  </div>
+</header>
