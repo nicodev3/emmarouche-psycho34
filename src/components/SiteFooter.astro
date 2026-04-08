@@ -77,12 +77,27 @@ const { copyrightRange = "2016-2019" } = Astro.props;
 
 <style is:global>
   .g-footer {
+    position: relative;
     padding-top: 1em;
-    background: url(/images/footer-bg.png) repeat 0 0/400px 400px;
+    background-color: #2a2528;
+    background-image: url(/images/footer-bg.png);
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-size: 400px 400px;
     color: #c5bcc7;
   }
 
+  .g-footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgb(30 26 32 / 0.52);
+    pointer-events: none;
+  }
+
   .g-footer__container {
+    position: relative;
+    z-index: 1;
     padding-left: 2.85714%;
     padding-right: 2.85714%;
   }
