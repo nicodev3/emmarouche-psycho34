@@ -547,67 +547,6 @@ figure > img {
   background: #fff;
   box-shadow: inset 0 0 10px -4px #777;
 }
-.g-footer {
-  height: 50em;
-  padding-top: 1em;
-  background: url(/images/footer-bg.png) repeat 0 0/400px 400px;
-  color: #c5bcc7;
-}
-@media (min-width: 64em) {
-  .g-footer {
-    height: 22em;
-  }
-}
-.g-footer__container {
-  padding-left: 2.85714%;
-  padding-right: 2.85714%;
-}
-@media (min-width: 48em) {
-  .g-footer__container {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .g-footer__container:after {
-    content: " ";
-    display: block;
-    clear: both;
-  }
-}
-.footer-phone {
-  letter-spacing: 1px;
-}
-.footer-phone .icon-phone {
-  fill: #afcb88;
-}
-.g-footer__container h4,
-.g-footer h3 {
-  color: #c5bcc7;
-}
-.footer-nav__ul__li {
-  margin-bottom: 0.5em;
-}
-.footer-nav__ul__li a {
-  background: none;
-  color: #c5bcc7;
-  font-family: var(--font-satisfy);
-  text-shadow: none;
-}
-@media (min-width: 64em) {
-  .copyright p:first-of-type {
-    float: left;
-  }
-}
-@media (min-width: 64em) {
-  .copyright p:last-of-type {
-    float: right;
-  }
-}
-.copyright p:last-of-type a {
-  background: none;
-  text-shadow: none;
-  color: #afcb88;
-}
 .g-container {
   min-height: 100%;
   margin-bottom: -22em;
@@ -1177,9 +1116,11 @@ figure > img {
 .map-container {
   height: 20em;
 }
-#map {
+.map-embed {
+  display: block;
   width: 100%;
   height: 100%;
+  border: 0;
 }
 .img-cab-ext {
   max-width: 100%;

@@ -7,7 +7,7 @@ const { copyrightRange = "2016-2019" } = Astro.props;
 
 <footer class="g-footer">
   <div class="g-footer__container">
-    <div class="row">
+    <div class="g-footer__row">
       <section class="footer-sitemap span-4">
         <h3>Plan du site</h3>
         <nav class="footer-nav">
@@ -73,3 +73,82 @@ const { copyrightRange = "2016-2019" } = Astro.props;
     </div>
   </div>
 </footer>
+
+<style is:global>
+  .g-footer {
+    padding-top: 1em;
+    background: url(/images/footer-bg.png) repeat 0 0/400px 400px;
+    color: #c5bcc7;
+  }
+
+  .g-footer__container {
+    padding-left: 2.85714%;
+    padding-right: 2.85714%;
+  }
+  @media (min-width: 48em) {
+    .g-footer__container {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  .g-footer__row {
+    display: grid;
+    row-gap: 1.5em;
+  }
+  @media (min-width: 64em) {
+    .g-footer__row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 2.85714%;
+      align-items: start;
+    }
+    .g-footer__row .span-4,
+    .g-footer__row .span-4--l {
+      width: auto;
+      float: none;
+      margin-right: 0;
+    }
+  }
+  .footer-phone {
+    letter-spacing: 1px;
+  }
+  .footer-phone .icon-phone {
+    fill: #afcb88;
+  }
+  .g-footer__container h4,
+  .g-footer h3 {
+    color: #c5bcc7;
+  }
+  .footer-nav__ul__li {
+    margin-bottom: 0.5em;
+  }
+  .footer-nav__ul__li a {
+    background: none;
+    color: #c5bcc7;
+    font-family: var(--font-satisfy);
+    text-shadow: none;
+  }
+  .copyright {
+    display: grid;
+    row-gap: 0.5em;
+  }
+  @media (min-width: 64em) {
+    .copyright {
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      column-gap: 1.5em;
+    }
+    .copyright p:first-of-type {
+      justify-self: start;
+    }
+    .copyright p:last-of-type {
+      justify-self: end;
+      text-align: right;
+    }
+  }
+  .copyright p:last-of-type a {
+    background: none;
+    text-shadow: none;
+    color: #afcb88;
+  }
+</style>

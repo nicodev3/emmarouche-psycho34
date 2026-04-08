@@ -35,6 +35,12 @@ export function googleMapsSearchUrl(): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 }
 
+/** URL d’intégration (iframe) : pas de clé API, fonctionne en local et en production. */
+export function googleMapsIframeEmbedUrl(): string {
+  const q = `${LOCAL_BUSINESS.streetAddress}, ${LOCAL_BUSINESS.postalCode} ${LOCAL_BUSINESS.addressLocality}, France`;
+  return `https://www.google.com/maps?q=${encodeURIComponent(q)}&z=16&hl=fr&output=embed`;
+}
+
 /** Graph JSON-LD : WebSite + Psychologist (cabinet local) */
 export function getLocalSeoJsonLd(siteOrigin: string): Record<string, unknown> {
   const origin = siteOrigin.replace(/\/$/, "");

@@ -3,9 +3,9 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import cabExtExterior from "../assets/images/cab-ext-1.jpg";
 import cabExtParking from "../assets/images/cab-ext-2.jpg";
+import { googleMapsIframeEmbedUrl } from "../data/local-seo";
 
-const mapsSrc =
-  "https://maps.googleapis.com/maps/api/js?key=AIzaSyDAOfY1zVWyGTa6cOUovsbY02Q9ub7gJ7s&callback=initMap";
+const mapEmbedSrc = googleMapsIframeEmbedUrl();
 ---
 
 <BaseLayout
@@ -94,7 +94,13 @@ const mapsSrc =
 
     <div class="span-4--l">
       <div class="map-container">
-        <div id="map"></div>
+        <iframe
+          class="map-embed"
+          title="Localisation du cabinet — Castelnau-le-Lez"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+          src={mapEmbedSrc}></iframe>
       </div>
       <Image
         class="img-cab-ext"
@@ -128,7 +134,4 @@ const mapsSrc =
       </div>
     </div>
   </section>
-
-  <script is:inline slot="maps" src="/js/cabinet-google-map-init.js"></script>
-  <script is:inline slot="maps" async defer src={mapsSrc}></script>
 </BaseLayout>
