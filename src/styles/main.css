@@ -212,6 +212,10 @@ strong {
 .btn:visited {
   color: #000;
 }
+/* Même spécificité que .btn:hover : sans cette règle, .btn:visited gagne et le texte reste noir au survol. */
+.btn:visited:hover {
+  color: #fff;
+}
 .btn--dark {
   background: #556644;
   border-color: #556644;
