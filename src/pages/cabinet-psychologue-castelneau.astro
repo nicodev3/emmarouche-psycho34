@@ -4,15 +4,40 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import cabExtExterior from "../assets/images/cab-ext-1.jpg";
 import cabExtParking from "../assets/images/cab-ext-2.jpg";
-import { googleMapsIframeEmbedUrl } from "../data/local-seo";
+import {
+  getFaqJsonLd,
+  googleMapsIframeEmbedUrl,
+  googleMapsSearchUrl,
+  LOCAL_BUSINESS,
+} from "../data/local-seo";
 
 const mapEmbedSrc = googleMapsIframeEmbedUrl();
+const mapsUrl = googleMapsSearchUrl();
+const siteOrigin = (Astro.site ?? Astro.url).origin;
+const extraJsonLd = getFaqJsonLd(siteOrigin, [
+  {
+    question: "Où se situe le cabinet de psychologie ?",
+    answer:
+      "Le cabinet se situe au 25 avenue Aristide Briand, Bâtiment B, 34170 Castelnau-le-Lez.",
+  },
+  {
+    question: "Comment venir au cabinet depuis Montpellier ?",
+    answer:
+      "Le cabinet est accessible depuis Montpellier en tram ligne 2, arrêt Charles de Gaulle, ainsi qu'en bus.",
+  },
+  {
+    question: "Peut-on se garer à proximité du cabinet ?",
+    answer:
+      "Oui. Un stationnement de proximité est possible, et le parking public du Vicarello se trouve à environ dix minutes à pied.",
+  },
+]);
 ---
 
 <BaseLayout
-  title="Cabinet psychologue castelneau"
-  description="Adresse et accès du cabinet de psychologie à Castelnau-le-Lez (25 av. Aristide Briand, B) : transports, stationnement et prise de rendez-vous."
+  title="Cabinet de psychologue à Castelnau-le-Lez | Accès"
+  description="Adresse, accès et prise de rendez-vous du cabinet de psychologie à Castelnau-le-Lez, près de Montpellier : tram, bus, stationnement et contact."
   pageH1="Cabinet de psychologie de Castelnau-le-Lez"
+  extraJsonLd={extraJsonLd}
 >
   <section class="g-page-section">
     <div class="span-8">
@@ -32,15 +57,20 @@ const mapEmbedSrc = googleMapsIframeEmbedUrl();
         <div class="row has-svg-before">
           <MapPin class="icon icon-location icon-center" aria-hidden="true" />
           <h2>Adresse du cabinet</h2>
-          <p>25 avenue Aristide Briand</p>
+          <p>{LOCAL_BUSINESS.streetAddressLine1}</p>
 
-          <p>Bâtiment B.</p>
+          <p>{LOCAL_BUSINESS.streetAddressLine2}</p>
 
-          <p>34170 Castelnau-le-Lez</p>
+          <p>{LOCAL_BUSINESS.postalCode} {LOCAL_BUSINESS.addressLocality}</p>
 
           <p>
             Bâtiment derrière le laboratoire, premier étage, entrée par
             l’escalier en colimaçon.<br />
+          </p>
+          <p>
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
+              Ouvrir l'adresse dans Google Maps
+            </a>
           </p>
         </div>
         <div class="row has-svg-before">
@@ -75,8 +105,8 @@ const mapEmbedSrc = googleMapsIframeEmbedUrl();
         <div class="row has-svg-before">
           <Phone class="icon icon-phone icon-center" aria-hidden="true" />
           <h2>Prendre rendez-vous</h2>
-          <p>0783427684</p>
-          <p>erouche-psycho34@outlook.fr</p>
+          <p><a href={LOCAL_BUSINESS.telephoneHref}>{LOCAL_BUSINESS.telephoneDisplay}</a></p>
+          <p><a href={LOCAL_BUSINESS.emailHref}>{LOCAL_BUSINESS.email}</a></p>
         </div>
         <div class="row has-svg-before">
           <Accessibility
@@ -86,6 +116,14 @@ const mapEmbedSrc = googleMapsIframeEmbedUrl();
           <p>
             Je me déplace à domicile pour les personnes en situation de
             handicap.
+          </p>
+        </div>
+        <div class="row has-svg-before">
+          <h2>Cabinet accessible depuis Montpellier et les communes voisines</h2>
+          <p>
+            Le cabinet reçoit également des patients venant de Montpellier, Le
+            Crès, Jacou, Clapiers, Vendargues, Castries, Prades-le-Lez,
+            Montferrier-sur-Lez, Saint-Clément-de-Rivière et Lunel.
           </p>
         </div>
       </div>
@@ -130,6 +168,17 @@ const mapEmbedSrc = googleMapsIframeEmbedUrl();
             suffisent.
           </li>
         </ul>
+      </div>
+      <div class="has-tape">
+        <h2>Questions fréquentes</h2>
+        <p>
+          Depuis Montpellier, le tram ligne 2 permet de rejoindre facilement le
+          cabinet, avec un arrêt à quelques minutes à pied.
+        </p>
+        <p>
+          Le parking du Vicarello constitue une solution pratique lorsqu'il est
+          difficile de stationner juste devant le cabinet.
+        </p>
       </div>
     </div>
   </section>

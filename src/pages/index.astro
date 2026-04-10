@@ -3,14 +3,38 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HomeServiceCard from "../components/HomeServiceCard.astro";
 import heroCabinet from "../assets/images/cab-ext-2.jpg";
+import { getFaqJsonLd, LOCAL_BUSINESS } from "../data/local-seo";
+
+const siteOrigin = (Astro.site ?? Astro.url).origin;
+const extraJsonLd = getFaqJsonLd(siteOrigin, [
+  {
+    question: "Où se situe le cabinet de psychologie ?",
+    answer:
+      "Le cabinet d'Emma Rouché se situe au 25 avenue Aristide Briand, Bâtiment B, 34170 Castelnau-le-Lez, à proximité de Montpellier.",
+  },
+  {
+    question: "Quels publics sont reçus au cabinet ?",
+    answer:
+      "Le cabinet reçoit des enfants, des adolescents, des adultes ainsi que des parents et des familles selon la demande.",
+  },
+  {
+    question: "Comment prendre rendez-vous avec la psychologue ?",
+    answer:
+      "La prise de rendez-vous se fait par téléphone au 07 83 42 76 84 ou par email à erouche-psycho34@outlook.fr.",
+  },
+  {
+    question: "Le cabinet est-il facilement accessible depuis Montpellier ?",
+    answer:
+      "Oui. Le cabinet de Castelnau-le-Lez est accessible depuis Montpellier, notamment par le tram ligne 2, et reçoit aussi des personnes venant des communes voisines comme Le Crès, Jacou, Clapiers, Vendargues ou Castries.",
+  },
+]);
 ---
 
 <BaseLayout
-  title="Psychologue Castelnau le lez"
-  description="Psychologue clinicienne à Castelnau-le-Lez, près de Montpellier : psychothérapies adultes, enfants et adolescents, bilans et soutien parental. Cabinet au 25 av. Aristide Briand."
+  title="Psychologue à Castelnau-le-Lez | Emma Rouché"
+  description="Psychologue clinicienne à Castelnau-le-Lez, près de Montpellier : consultations adultes, enfants et adolescents, bilans psychologiques et soutien parental."
   pageH1="Psychologue à Castelnau-le-Lez"
-  scheduleText="Lundi - Mardi - Mercredi - Samedi matin"
-  copyrightRange="2016-2018"
+  extraJsonLd={extraJsonLd}
 >
   <section>
     <div class="home-hero">
@@ -19,7 +43,7 @@ import heroCabinet from "../assets/images/cab-ext-2.jpg";
         alt="Vue extérieure du cabinet de psychologie à Castelnau-le-Lez"
         class="home-hero__img"
         widths={[640, 960, 1280, 1600, 1920]}
-        sizes="(max-width: 1200px) 100vw, min(100vw, 1200px)"
+        sizes="(max-width: 1280px) 100vw, min(100vw, 1280px)"
         loading="eager"
         fetchpriority="high"
         decoding="async"
@@ -32,12 +56,15 @@ import heroCabinet from "../assets/images/cab-ext-2.jpg";
 
       <p>
         Psychologue clinicienne, je vous accueille au sein de mon cabinet, à
-        proximité de Montpellier, à Castelnau-le-Lez.
+        Castelnau-le-Lez, à proximité immédiate de Montpellier, pour des
+        consultations destinées aux enfants, aux adolescents, aux adultes et
+        aux parents.
       </p>
 
       <p>
-        Je vous propose différentes prises en charge dont vous trouverez le
-        détail sur ce site
+        Vous trouverez sur ce site les principales prises en charge proposées
+        au cabinet ainsi que les informations pratiques pour préparer votre
+        venue.
       </p>
 
     </header>
@@ -51,8 +78,8 @@ import heroCabinet from "../assets/images/cab-ext-2.jpg";
         </p>
         <div class="row">
           <div class="home-adelisiret">
-            <p>N° ADELI : 34 93 1531 7</p>
-            <p>N° SIRET : 813 432 531 00016</p>
+            <p>N° ADELI : {LOCAL_BUSINESS.adeli}</p>
+            <p>N° SIRET : {LOCAL_BUSINESS.siret}</p>
           </div>
         </div>
       </div>
@@ -70,41 +97,88 @@ import heroCabinet from "../assets/images/cab-ext-2.jpg";
         class="home-services-grid grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:gap-12"
       >
         <HomeServiceCard
-          title="Psychothérapies enfants et adolescents"
+          title="Psychologue enfants et adolescents à Castelnau-le-Lez"
           paragraphs={[
-            "L'approche psychothérapeutique avec les enfants se distingue de celle des adultes par l'utilisation de médiations diverses.",
-            "Vous découvrirez sur la page dédiée à la psychothérapie d'enfants et d'adolescents les raisons qui peuvent vous amener à consulter, ainsi que des détails sur le suivi qu'il est possible de mettre en place.",
+            "L'approche psychothérapeutique avec les enfants et les adolescents s'appuie sur des médiations adaptées à leur âge, à leur vécu et à leur capacité d'expression.",
+            "La page dédiée détaille les motifs de consultation fréquents à Castelnau-le-Lez et la manière dont un suivi peut se mettre en place.",
           ]}
           href="/psychotherapies-enfants-adolescents.html"
-          linkLabel="Psychothérapies enfants et adolescents"
+          linkLabel="Consultations enfants et adolescents"
         />
         <HomeServiceCard
-          title="Psychothérapies adultes"
+          title="Psychothérapie pour adultes à Castelnau-le-Lez"
           paragraphs={[
-            "Je propose au cabinet de Castelnau-le-Lez des psychothérapies d'orientation analytique.",
-            "Les méthodes psychothérapeutiques sont diverses, vous souhaitez peut-être connaître mon approche avant de venir me consulter. Pour en savoir plus sur ma pratique de psychothérapeute, vous pouvez visiter le contenu qui lui est dédié.",
+            "Je propose au cabinet de Castelnau-le-Lez des psychothérapies pour adultes d'orientation analytique.",
+            "Vous pouvez y découvrir mon approche, le déroulement de la première consultation et les modalités de suivi au cabinet.",
           ]}
           href="/psychotherapies-adultes.html"
-          linkLabel="Psychothérapies adultes"
+          linkLabel="Consultations adultes"
         />
         <HomeServiceCard
-          title="Bilans psychologiques"
+          title="Bilan psychologique à Castelnau-le-Lez"
           paragraphs={[
-            "Le bilan psychologique permet de donner un point de vue sur les compétences de l'enfant ou de l'adolescent.",
-            "Les tests psychométriques et les tests projectifs sont les outils validés scientifiquement utilisés par le psychologue. Rendez-vous sur la page dédiée aux bilans psychologiques pour davantage d'informations.",
+            "Le bilan psychologique permet d'évaluer les compétences, le fonctionnement émotionnel et certains besoins spécifiques de l'enfant ou de l'adolescent.",
+            "La page dédiée présente le déroulement du bilan, les tests utilisés et le cadre de restitution proposé au cabinet.",
           ]}
           href="/bilan-psychologique.html"
           linkLabel="Bilans psychologiques"
         />
         <HomeServiceCard
-          title="Soutien parental et familial"
+          title="Soutien parental et familial à Castelnau-le-Lez"
           paragraphs={[
-            "Je propose aux parents et familles un accompagnement et un espace de parole aptes à les soutenir.",
-            "Pour en savoir plus sur le soutien familial et parental, je vous invite à visiter la page qui lui est consacrée.",
+            "Je propose aux parents et aux familles un espace d'accompagnement et de réflexion pour traverser des périodes de tension, de changement ou de doute.",
+            "Vous y trouverez des repères sur les situations dans lesquelles un soutien familial et parental peut être utile.",
           ]}
           href="/soutien-parental.html"
           linkLabel="Soutien familial et parental"
         />
+      </div>
+    </div>
+    <div class="row">
+      <div class="has-img-border perch-paragraph">
+        <h2>Cabinet de psychologie près de Montpellier et des communes voisines</h2>
+        <p>
+          Le cabinet reçoit des personnes venant de {LOCAL_BUSINESS.addressLocality},
+          Montpellier, Le Crès, Vendargues, Clapiers, Montferrier-sur-Lez,
+          Prades-le-Lez, Saint-Clément-de-Rivière, Jacou, Lunel et Castries.
+        </p>
+        <p>
+          Cette implantation à Castelnau-le-Lez facilite l'accès au cabinet pour
+          les habitants de l'est montpelliérain, avec des solutions de tram, de
+          bus et de stationnement détaillées sur la page <a
+            href="/cabinet-psychologue-castelneau.html">cabinet et accès</a>.
+        </p>
+        <p>
+          Pour prendre rendez-vous, vous pouvez appeler le <a
+            href={LOCAL_BUSINESS.telephoneHref}>{LOCAL_BUSINESS.telephoneDisplay}</a>
+          ou écrire à <a href={LOCAL_BUSINESS.emailHref}>{LOCAL_BUSINESS.email}</a>.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="has-img-border perch-paragraph">
+        <h2>Questions fréquentes</h2>
+        <h3>Où se situe le cabinet&nbsp;?</h3>
+        <p>
+          Le cabinet se situe au {LOCAL_BUSINESS.streetAddress}, {LOCAL_BUSINESS.postalCode}
+          {" "}{LOCAL_BUSINESS.addressLocality}, à proximité de Montpellier.
+        </p>
+        <h3>Quels publics sont reçus&nbsp;?</h3>
+        <p>
+          Le cabinet reçoit des enfants, des adolescents, des adultes ainsi que
+          des parents et des familles selon la demande.
+        </p>
+        <h3>Comment prendre rendez-vous&nbsp;?</h3>
+        <p>
+          Les rendez-vous se prennent par téléphone au <a
+            href={LOCAL_BUSINESS.telephoneHref}>{LOCAL_BUSINESS.telephoneDisplay}</a>
+          ou par email à <a href={LOCAL_BUSINESS.emailHref}>{LOCAL_BUSINESS.email}</a>.
+        </p>
+        <h3>Le cabinet est-il accessible depuis Montpellier&nbsp;?</h3>
+        <p>
+          Oui. Le cabinet de Castelnau-le-Lez est facilement accessible depuis
+          Montpellier, notamment via le tram ligne 2.
+        </p>
       </div>
     </div>
   </section>

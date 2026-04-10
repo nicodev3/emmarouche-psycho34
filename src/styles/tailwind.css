@@ -1,1 +1,28 @@
 @import "tailwindcss";
+
+@theme inline {
+  --color-header-bar: #594f5b;
+  --color-header-accent: #c2d9a8;
+  --color-header-muted: #cbc5cc;
+  --color-header-sage: #bfd5a0;
+  --color-header-tel-bg: #cfe0b8;
+  --color-header-tel-text: #635865;
+  --color-header-icon-muted: #7c6e7f;
+  --color-brand-sage: #afcb88;
+
+  --font-emma-script: var(--font-satisfy);
+  --font-emma-serif: var(--font-lora);
+
+  --spacing-g-header: var(--g-header-height);
+}
+
+/** Aligné sur le pattern Tailwind UI : max-w-7xl + gouttières responsive */
+@layer components {
+  .site-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@utility tap-highlight-none {
+  -webkit-tap-highlight-color: transparent;
+}

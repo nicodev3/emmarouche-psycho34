@@ -1,16 +1,33 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getServiceJsonLd } from "../data/local-seo";
+
+const siteOrigin = (Astro.site ?? Astro.url).origin;
+const extraJsonLd = getServiceJsonLd(siteOrigin, {
+  name: "Psychologue enfants et adolescents à Castelnau-le-Lez",
+  description:
+    "Consultations psychologiques pour enfants et adolescents à Castelnau-le-Lez, près de Montpellier.",
+  path: "/psychotherapies-enfants-adolescents.html",
+});
 ---
 
 <BaseLayout
-  title="Psychotherapies enfants adolescents"
-  description="Consultations psychologiques pour enfants et adolescents à Castelnau-le-Lez · contextes d’orientation et accompagnement."
-  pageH1="Dans quel contexte consulter ?"
+  title="Psychologue enfants et adolescents à Castelnau-le-Lez"
+  description="Consultations psychologiques pour enfants et adolescents à Castelnau-le-Lez, près de Montpellier : motifs de consultation et mise en place du suivi."
+  pageH1="Psychologue enfants et adolescents à Castelnau-le-Lez"
+  extraJsonLd={extraJsonLd}
 >
   <section class="g-page-section">
     <div class="span-8">
       <header class="has-paper-shadow">
-        <h1>Dans quel contexte consulter ?</h1>
+        <h1>Psychologue enfants et adolescents à Castelnau-le-Lez</h1>
+
+        <p>
+          J'accueille au cabinet de Castelnau-le-Lez des enfants, des
+          adolescents et leurs parents lorsque des difficultés psychologiques,
+          émotionnelles, scolaires ou relationnelles nécessitent un temps
+          d'écoute et d'évaluation.
+        </p>
 
         <h2>Chez les enfants</h2>
 

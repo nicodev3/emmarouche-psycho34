@@ -1,27 +1,42 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getServiceJsonLd } from "../data/local-seo";
+
+const siteOrigin = (Astro.site ?? Astro.url).origin;
+const extraJsonLd = getServiceJsonLd(siteOrigin, {
+  name: "Psychothérapie pour adultes à Castelnau-le-Lez",
+  description:
+    "Consultations et psychothérapies pour adultes à Castelnau-le-Lez, près de Montpellier.",
+  path: "/psychotherapies-adultes.html",
+});
 ---
 
 <BaseLayout
-  title="Psychotherapies adultes"
-  description="Psychothérapies pour adultes à Castelnau-le-Lez : approche, déroulement des séances et modalités de consultation."
-  pageH1="Psychothérapies adultes"
+  title="Psychologue adultes à Castelnau-le-Lez | Psychothérapie"
+  description="Psychothérapie pour adultes à Castelnau-le-Lez, près de Montpellier : première consultation, soutien psychologique et suivi."
+  pageH1="Psychothérapie pour adultes à Castelnau-le-Lez"
+  extraJsonLd={extraJsonLd}
 >
   <section class="g-page-section">
     <div class="span-8">
       <header class="has-paper-shadow">
+        <h1>Psychothérapie pour adultes à Castelnau-le-Lez</h1>
         <h2>Ma pratique</h2>
 
         <p>
-          Je propose des psychothérapies d'orientation psychanalytique. Il
-          s'agit d'une écoute permettant à la personne de mettre ses difficultés
-          en lien avec son histoire passée et/ou son quotidien, afin de donner
-          un sens à sa souffrance et de pouvoir la dépasser. La réflexion du
-          patient est privilégiée et le psychologue intervient pour l'aider à
-          prendre conscience d'un certains nombre de choses et à faire des
-          liens. Ces interventions se font en fonction de son besoin d'étayage
-          et de soutien. Le patient est pleinement acteur de sa vie, de son
-          travail de psychothérapie et de son désir de comprendre afin
+          Je propose à Castelnau-le-Lez des psychothérapies pour adultes
+          d'orientation psychanalytique. Il s'agit d'une écoute permettant à la
+          personne de mettre ses difficultés en lien avec son histoire passée
+          et/ou son quotidien, afin de donner un sens à sa souffrance et de
+          pouvoir la dépasser.
+        </p>
+
+        <p>
+          La réflexion du patient est privilégiée et le psychologue intervient
+          pour l'aider à prendre conscience d'un certains nombre de choses et à
+          faire des liens. Ces interventions se font en fonction de son besoin
+          d'étayage et de soutien. Le patient est pleinement acteur de sa vie,
+          de son travail de psychothérapie et de son désir de comprendre afin
           d'évoluer.
         </p>
       </header>

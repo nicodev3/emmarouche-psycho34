@@ -1,16 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getServiceJsonLd } from "../data/local-seo";
+
+const siteOrigin = (Astro.site ?? Astro.url).origin;
+const extraJsonLd = getServiceJsonLd(siteOrigin, {
+  name: "Bilan psychologique à Castelnau-le-Lez",
+  description:
+    "Bilans psychologiques pour enfants et adolescents à Castelnau-le-Lez, près de Montpellier.",
+  path: "/bilan-psychologique.html",
+});
 ---
 
 <BaseLayout
-  title="Bilan psychologique"
-  description="Bilans psychologiques à Castelnau-le-Lez : déroulement, objectifs et publics concernés (enfants, adolescents, adultes)."
-  pageH1="Bilans psychologiques"
+  title="Bilan psychologique à Castelnau-le-Lez"
+  description="Bilan psychologique enfant et adolescent à Castelnau-le-Lez : déroulement, WISC-V, objectifs et restitution."
+  pageH1="Bilan psychologique à Castelnau-le-Lez"
+  extraJsonLd={extraJsonLd}
 >
   <section class="g-page-section">
     <div class="span-8">
       <header class="has-paper-shadow">
-        <h1>Qu'est-ce qu'un bilan psychologique&nbsp;?</h1>
+        <h1>Bilan psychologique à Castelnau-le-Lez</h1>
         <p>
           Le bilan psychologique permet de faire le point sur les compétences de
           l’enfant ou de l’adolescent, pour cerner d’une part ses difficultés
@@ -30,10 +40,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           sur les attentes formulées.
         </p>
         <p>
-          Faire passer à votre enfant ou adolescent un bilan psychologique est
-          une démarche conséquente. Il est important de réfléchir ensemble à
-          votre demande afin de créer les conditions les plus favorables au
-          bien-être de votre enfant au cours de ce moment.
+          Faire passer à votre enfant ou adolescent un bilan psychologique à
+          Castelnau-le-Lez est une démarche conséquente. Il est important de
+          réfléchir ensemble à votre demande afin de créer les conditions les
+          plus favorables au bien-être de votre enfant au cours de ce moment.
         </p>
       </header>
 

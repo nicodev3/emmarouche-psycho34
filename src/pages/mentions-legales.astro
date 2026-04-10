@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { LOCAL_BUSINESS } from "../data/local-seo";
 ---
 
 <BaseLayout
@@ -25,14 +26,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <strong>Adresse professionnelle :</strong> 25 avenue Aristide Briand,
           Bâtiment B, 34170 Castelnau-le-Lez, France
         </p>
-        <p><strong>Téléphone :</strong> 07 83 42 76 84</p>
         <p>
-          <strong>Email :</strong> <a href="mailto:emma.rouche@hotmail.fr"
-            >emma.rouche@hotmail.fr</a
+          <strong>Téléphone :</strong> <a href={LOCAL_BUSINESS.telephoneHref}
+            >{LOCAL_BUSINESS.telephoneDisplay}</a
           >
         </p>
-        <p><strong>N° SIRET :</strong> [à compléter]</p>
-        <p><strong>N° RPPS :</strong> 10008473406</p>
+        <p>
+          <strong>Email :</strong> <a href={LOCAL_BUSINESS.emailHref}
+            >{LOCAL_BUSINESS.email}</a
+          >
+        </p>
+        <p><strong>N° SIRET :</strong> {LOCAL_BUSINESS.siret}</p>
+        <p><strong>N° RPPS :</strong> {LOCAL_BUSINESS.rpps}</p>
       </div>
 
       <div class="has-img-border perch-paragraph">
@@ -89,10 +94,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </p>
         <p>
           Pour exercer vos droits :
-          <strong
-            ><a href="mailto:emma.rouche@hotmail.fr"
-              >emma.rouche@hotmail.fr</a
-            ></strong
+          <strong><a href={LOCAL_BUSINESS.emailHref}>{LOCAL_BUSINESS.email}</a></strong
           >. En cas de difficulté, vous pouvez introduire une réclamation auprès
           de la CNIL (<a href="https://www.cnil.fr/">www.cnil.fr</a>).
         </p>

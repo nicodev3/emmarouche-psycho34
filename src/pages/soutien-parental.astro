@@ -2,17 +2,27 @@
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import photoSoutienParental from "../assets/images/photo-site-enfant-3-w800.jpg";
+import { getServiceJsonLd } from "../data/local-seo";
+
+const siteOrigin = (Astro.site ?? Astro.url).origin;
+const extraJsonLd = getServiceJsonLd(siteOrigin, {
+  name: "Soutien parental et familial à Castelnau-le-Lez",
+  description:
+    "Soutien parental et familial à Castelnau-le-Lez pour accompagner les parents et les familles.",
+  path: "/soutien-parental.html",
+});
 ---
 
 <BaseLayout
-  title="Soutien parental"
-  description="Soutien parental et familial à Castelnau-le-Lez : accompagnement des parents et de la dynamique familiale."
-  pageH1="Soutenir la famille et les parents"
+  title="Soutien parental à Castelnau-le-Lez | Psychologue famille"
+  description="Soutien parental et familial à Castelnau-le-Lez, près de Montpellier : accompagnement des parents et de la dynamique familiale."
+  pageH1="Soutien parental et familial à Castelnau-le-Lez"
+  extraJsonLd={extraJsonLd}
 >
   <section class="g-page-section">
     <div class="span-8">
       <header class="has-paper-shadow">
-        <h1>Soutenir la famille et les parents</h1>
+        <h1>Soutien parental et familial à Castelnau-le-Lez</h1>
 
         <p>
           Mon souhait de proposer du soutien parental et familial est né de mon

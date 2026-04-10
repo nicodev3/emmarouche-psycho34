@@ -1,14 +1,19 @@
 ---
 import { Phone } from "@lucide/astro";
+import { LOCAL_BUSINESS, googleMapsSearchUrl } from "../data/local-seo";
 
 interface Props {
   copyrightRange?: string;
 }
 const { copyrightRange = "2016-2026" } = Astro.props;
+const mapsUrl = googleMapsSearchUrl();
+const nearbyCities = LOCAL_BUSINESS.areaServedCities.filter(
+  (city) => city !== LOCAL_BUSINESS.addressLocality,
+).join(", ");
 ---
 
 <footer class="g-footer">
-  <div class="g-footer__container">
+  <div class="g-footer__container site-container">
     <div class="g-footer__row">
       <section class="footer-sitemap span-4">
         <h3>Plan du site</h3>
@@ -50,20 +55,24 @@ const { copyrightRange = "2016-2026" } = Astro.props;
         <h3>Emma Rouché</h3>
         <h4>Psychologue clinicienne</h4>
         <div class="footer-adress">
-          <p>25 avenue Aristide Briand, Bâtiment B</p>
-          <p>34170 Castelnau-le-Lez</p>
+          <p>
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
+              {LOCAL_BUSINESS.streetAddress}
+            </a>
+          </p>
+          <p>{LOCAL_BUSINESS.postalCode} {LOCAL_BUSINESS.addressLocality}</p>
         </div>
         <p class="footer-phone">
           <Phone class="icon icon-phone" aria-hidden="true" />
-          07 83 42 76 84
+          <a href={LOCAL_BUSINESS.telephoneHref}>{LOCAL_BUSINESS.telephoneDisplay}</a>
+        </p>
+        <p>
+          <a href={LOCAL_BUSINESS.emailHref}>{LOCAL_BUSINESS.email}</a>
         </p>
       </section>
       <section class="footer-infos span-4--l">
         <h3>Psychologue près des villes de</h3>
-        <p>
-          Montpellier, Le Crès, Vendargues, Clapiers, Montferrier-sur-Lez,
-          Prades-le-Lez, Saint-Clément de Rivière, Jacou, Lunel, Castries
-        </p>
+        <p>{nearbyCities}</p>
       </section>
     </div>
     <div class="copyright">
@@ -101,15 +110,6 @@ const { copyrightRange = "2016-2026" } = Astro.props;
   .g-footer__container {
     position: relative;
     z-index: 1;
-    padding-left: 2.85714%;
-    padding-right: 2.85714%;
-  }
-  @media (min-width: 48em) {
-    .g-footer__container {
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-    }
   }
   .g-footer__row {
     display: grid;
@@ -145,6 +145,12 @@ const { copyrightRange = "2016-2026" } = Astro.props;
     background: none;
     color: #c5bcc7;
     font-family: var(--font-satisfy);
+    text-shadow: none;
+  }
+  .footer-schema a,
+  .footer-phone a {
+    background: none;
+    color: inherit;
     text-shadow: none;
   }
   .copyright {
