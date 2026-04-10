@@ -1,8 +1,6 @@
 ---
-import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HomeServiceCard from "../components/HomeServiceCard.astro";
-import heroCabinet from "../assets/images/cab-ext-2.jpg";
 import { getFaqJsonLd, LOCAL_BUSINESS } from "../data/local-seo";
 
 const siteOrigin = (Astro.site ?? Astro.url).origin;
@@ -37,52 +35,51 @@ const extraJsonLd = getFaqJsonLd(siteOrigin, [
   extraJsonLd={extraJsonLd}
 >
   <section>
-    <div class="home-hero">
-      <Image
-        src={heroCabinet}
-        alt="Vue extérieure du cabinet de psychologie à Castelnau-le-Lez"
-        class="home-hero__img"
-        widths={[640, 960, 1280, 1600, 1920]}
-        sizes="(max-width: 1280px) 100vw, min(100vw, 1280px)"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-      <div class="home-hero__overlay" aria-hidden="true"></div>
-      <p class="home-hero__kicker">Castelnau-le-Lez · Montpellier</p>
-    </div>
-    <header class="home-text">
-      <h1>Psychologue à Castelnau-le-Lez</h1>
-
-      <p>
-        Psychologue clinicienne, je vous accueille au sein de mon cabinet, à
-        Castelnau-le-Lez, à proximité immédiate de Montpellier, pour des
-        consultations destinées aux enfants, aux adolescents, aux adultes et
-        aux parents.
-      </p>
-
-      <p>
-        Vous trouverez sur ce site les principales prises en charge proposées
-        au cabinet ainsi que les informations pratiques pour préparer votre
-        venue.
-      </p>
-
-    </header>
-    <div class="row">
-      <div class="home-block-tape has-tape">
-        <h2>Emma Rouché, psychologue clinicienne</h2>
-        <p>
-          Psychologue clinicienne enregistrée à l’Agence Régionale de Santé
-          (ARS) et au répertoire national des entreprises et des établissements
-          (SIRENE) :
-        </p>
-        <div class="row">
-          <div class="home-adelisiret">
-            <p>N° ADELI : {LOCAL_BUSINESS.adeli}</p>
-            <p>N° SIRET : {LOCAL_BUSINESS.siret}</p>
+    <div class="home-intro">
+      <div class="home-intro__main">
+        <div class="home-hero">
+          <div class="home-hero__blobs" aria-hidden="true"></div>
+          <div class="home-hero__inner">
+            <p class="home-hero__kicker">Castelnau-le-Lez · Montpellier</p>
+            <p class="home-hero__tagline">
+              Un espace d'écoute pour enfants, adolescents, adultes et familles.
+            </p>
           </div>
         </div>
+        <header class="home-text">
+          <h1>Psychologue à Castelnau-le-Lez</h1>
+
+          <p>
+            Psychologue clinicienne, je vous accueille au sein de mon cabinet, à
+            Castelnau-le-Lez, à proximité immédiate de Montpellier, pour des
+            consultations destinées aux enfants, aux adolescents, aux adultes et
+            aux parents.
+          </p>
+
+          <p>
+            Vous trouverez sur ce site les principales prises en charge proposées
+            au cabinet ainsi que les informations pratiques pour préparer votre
+            venue.
+          </p>
+
+        </header>
       </div>
+      <aside class="home-intro__aside" aria-label="Informations professionnelles">
+        <div class="home-block-tape has-tape">
+          <h2>Emma Rouché, psychologue clinicienne</h2>
+          <p>
+            Psychologue clinicienne enregistrée à l’Agence Régionale de Santé
+            (ARS) et au répertoire national des entreprises et des établissements
+            (SIRENE) :
+          </p>
+          <div class="row">
+            <div class="home-adelisiret">
+              <p>N° ADELI : {LOCAL_BUSINESS.adeli}</p>
+              <p>N° SIRET : {LOCAL_BUSINESS.siret}</p>
+            </div>
+          </div>
+        </div>
+      </aside>
     </div>
     <div class="home-services-block">
       <header class="home-services-head">

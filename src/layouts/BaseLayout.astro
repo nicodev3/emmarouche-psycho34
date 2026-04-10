@@ -82,8 +82,14 @@ const geoIcbm = `${LOCAL_BUSINESS.latitude};${LOCAL_BUSINESS.longitude}`;
         <script type="application/ld+json" set:html={JSON.stringify(node)} />
       ))
     }
+    <Font cssVariable="--font-satisfy" preload={[{ subset: "latin" }]} />
     <Font cssVariable="--font-lora" preload />
-    <Font cssVariable="--font-satisfy" />
+    <style is:inline>
+      /* Évite un flash de texte « nu » avant le chargement de la feuille principale */
+      html {
+        font-family: var(--font-lora), Georgia, "Times New Roman", serif;
+      }
+    </style>
     <link rel="icon" type="image/png" href="/favicon.png" />
   </head>
   <body>
