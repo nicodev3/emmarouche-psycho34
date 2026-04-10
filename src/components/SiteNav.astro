@@ -204,6 +204,15 @@ function linkCurrent(href: string) {
   @media (max-width: 47.99em) {
     .nav__bar {
       background: #afcb88;
+      text-align: left;
+      align-items: stretch;
+    }
+    .nav__ul {
+      text-align: left;
+    }
+    .nav__ul__li a,
+    .nav__ul__li .nav__dropdown-trigger {
+      text-align: left;
     }
   }
   @media (min-width: 48em) {
@@ -455,13 +464,14 @@ function linkCurrent(href: string) {
     .has-dropdown .dropdown a {
       display: block;
       width: 100%;
-      padding: 0.85em 1em 0.85em 1.45em;
+      padding: 0.85em 1em;
       min-height: 0;
       line-height: 1.35;
       height: auto;
       color: #322b35;
       font-family: var(--font-satisfy);
       font-size: 1.5rem;
+      text-align: left;
       text-decoration: none;
       text-shadow: none;
       box-sizing: border-box;

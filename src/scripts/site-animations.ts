@@ -5,6 +5,15 @@ gsap.registerPlugin(DrawSVGPlugin);
 
 const NAV_DESKTOP_MEDIA = "(min-width: 48em)";
 
+/** Aligne le panneau menu mobile (`top`) sur le bas réel du bandeau. */
+function syncPageWrapperHeaderHeight(): void {
+  const pageWrapper = document.querySelector<HTMLElement>(".page-wrapper");
+  const header = document.getElementById("site-header");
+  if (!pageWrapper || !header) return;
+  const h = header.getBoundingClientRect().height;
+  pageWrapper.style.setProperty("--g-header-height", `${Math.ceil(h)}px`);
+}
+
 function resetNavDropdown(): void {
   const container = document.querySelector<HTMLElement>("[data-nav-dropdown]");
   const btn = document.getElementById("site-nav-dropdown-consultations-btn");
@@ -100,6 +109,20 @@ function initNavDropdown(): void {
 }
 
 function onReady(): void {
+  const siteHeader = document.getElementById("site-header");
+  const pageWrapper = document.querySelector<HTMLElement>(".page-wrapper");
+  if (siteHeader && pageWrapper && "ResizeObserver" in window) {
+    const ro = new ResizeObserver(() => {
+      syncPageWrapperHeaderHeight();
+    });
+    ro.observe(siteHeader);
+  }
+  syncPageWrapperHeaderHeight();
+  void document.fonts?.ready?.then(() => {
+    syncPageWrapperHeaderHeight();
+  });
+  window.addEventListener("resize", syncPageWrapperHeaderHeight);
+
   const navState = document.getElementById("nav_state");
   const navTrigger = document.getElementById("nav_trigger");
   const mqDesktop = window.matchMedia(NAV_DESKTOP_MEDIA);
@@ -179,6 +202,7 @@ function onReady(): void {
       navState.classList.remove("nav--open");
       resetNavDropdown();
       syncNavAccessibility(false);
+      syncPageWrapperHeaderHeight();
     });
   }
 

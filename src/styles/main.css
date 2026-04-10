@@ -686,7 +686,7 @@ figure > img {
   margin: 1em 0 0.5em;
 }
 .page-wrapper {
-  /* Offset du menu mobile (sous le bandeau : NAP + bouton tel) */
+  /* Menu mobile : top = hauteur du #site-header (écrasée en px par site-animations.ts) */
   --g-header-height: 10rem;
   position: relative;
   z-index: 1;
