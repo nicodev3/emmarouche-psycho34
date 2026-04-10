@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-header-bar: #594f5b;
+  --color-header-bar: #2e262e;
   --color-header-accent: #c2d9a8;
   --color-header-muted: #cbc5cc;
   --color-header-sage: #bfd5a0;

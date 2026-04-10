@@ -12,8 +12,6 @@ interface Props {
   description?: string;
   /** Chemin absolu sur le site (ex. /images/cab-ext-2.jpg) ou URL complète */
   ogImage?: string;
-  pageH1: string;
-  scheduleText?: string;
   copyrightRange?: string;
   extraJsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -22,8 +20,6 @@ const {
   title,
   description = "",
   ogImage = "/images/cab-ext-2.jpg",
-  pageH1,
-  scheduleText = LOCAL_BUSINESS.scheduleText,
   copyrightRange = "2016-2026",
   extraJsonLd = [],
 } = Astro.props;
@@ -94,7 +90,7 @@ const geoIcbm = `${LOCAL_BUSINESS.latitude};${LOCAL_BUSINESS.longitude}`;
   </head>
   <body>
     <div class="page-wrapper">
-      <SiteHeader pageH1={pageH1} scheduleText={scheduleText} />
+      <SiteHeader />
       <SiteNav />
       <main class="g-page-container site-container md:pt-8">
         <slot />

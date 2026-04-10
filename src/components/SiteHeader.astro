@@ -1,82 +1,65 @@
 ---
-import { Clock, House, Menu, Phone } from "@lucide/astro";
+import { MapPin, Menu, Phone } from "@lucide/astro";
 import { LOCAL_BUSINESS, googleMapsSearchUrl } from "../data/local-seo";
 
-interface Props {
-  pageH1: string;
-  scheduleText: string;
-}
-const { pageH1, scheduleText } = Astro.props;
 const mapsUrl = googleMapsSearchUrl();
+
+const addressOneLine = `${LOCAL_BUSINESS.streetAddress}, ${LOCAL_BUSINESS.postalCode} ${LOCAL_BUSINESS.addressLocality}`;
 ---
 
-<header class="relative h-g-header bg-header-bar">
-  <div
-    class="site-container relative grid h-full grid-cols-1 items-stretch md:grid-cols-12 md:gap-x-8"
-  >
-    <div
-      class="flex h-full flex-col items-start justify-center py-4 md:col-span-4"
+<header class="relative bg-header-bar py-3 md:py-4">
+  <div class="site-container relative">
+    <button
+      type="button"
+      class="nav-trigger tap-highlight-none absolute top-3 right-2 z-100 m-0 cursor-pointer border-0 bg-transparent p-0 font-inherit text-inherit leading-none md:hidden focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage focus-visible:ring-offset-4 focus-visible:ring-offset-header-bar"
+      id="nav_trigger"
+      aria-label="Ouvrir ou fermer le menu"
+      aria-expanded="false"
+      aria-controls="nav_state"
     >
-      <span
-        class="text-3xl font-emma-script text-header-accent! md:text-4xl!"
-        >Emma Rouché</span>
-      <p
-        class="m-0! italic text-header-accent"
-      >
-        {pageH1}
-      </p>
-      <button
-        type="button"
-        class="nav-trigger tap-highlight-none absolute top-1/2 right-2 z-100 m-0 cursor-pointer border-0 bg-transparent p-0 font-inherit text-inherit leading-none -translate-y-1/2 rounded-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage focus-visible:ring-offset-4 focus-visible:ring-offset-header-bar md:hidden"
-        id="nav_trigger"
-        aria-label="Ouvrir ou fermer le menu"
-        aria-expanded="false"
-        aria-controls="nav_state"
-      >
-        <Menu
-          class="icon icon-burger block size-24 text-white transition-all duration-400 max-md:size-20"
-          aria-hidden="true"
-        />
-      </button>
-    </div>
-    <div
-      class="hidden h-full flex-col items-center justify-around py-4 md:col-span-2 md:flex"
-    >
-      <House
-        class="icon icon-home size-8 shrink-0 text-header-sage"
+      <Menu
+        class="icon icon-burger block size-24 text-white transition-all duration-400 max-md:size-20"
         aria-hidden="true"
       />
+    </button>
+
+    <div
+      class="flex flex-col gap-3 pr-14 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-x-8 md:gap-y-3 md:pr-8 lg:gap-x-10"
+    >
+      <div
+        class="flex items-center gap-2 md:min-w-0 md:shrink-0 md:text-center"
+      >
+        <span
+          class="text-xl leading-tight font-emma-script text-header-accent md:text-2xl"
+          >{LOCAL_BUSINESS.name}</span
+        >
+        <span
+          class="text-xs leading-snug font-medium tracking-wide text-header-muted"
+          >{LOCAL_BUSINESS.title}</span
+        >
+      </div>
+
       <a
-        class="bg-none text-center text-sm leading-normal text-header-muted text-shadow-none"
+        class="flex min-w-0 max-w-full items-center gap-2 overflow-x-auto rounded-sm text-sm leading-snug text-header-muted no-underline transition-colors hover:text-header-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage focus-visible:ring-offset-2 focus-visible:ring-offset-header-bar md:max-w-none md:shrink md:justify-center"
         href={mapsUrl}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label={`Adresse du cabinet : ${LOCAL_BUSINESS.streetAddress}, ${LOCAL_BUSINESS.postalCode} ${LOCAL_BUSINESS.addressLocality}`}
       >
-        {LOCAL_BUSINESS.streetAddressLine1} {LOCAL_BUSINESS.postalCode}{" "}
-        {LOCAL_BUSINESS.addressLocality}
-      </a>
-    </div>
-    <div
-      class="hidden h-full flex-col items-center justify-around py-4 md:col-span-2 md:flex"
-    >
-      <Clock
-        class="icon icon-clock size-8 shrink-0 text-header-sage"
-        aria-hidden="true"
-      />
-      <span class="text-center text-sm leading-normal text-header-muted">{scheduleText}</span>
-    </div>
-    <div
-      class="hidden h-full flex-col items-center justify-around py-4 md:col-span-4 md:flex"
-    >
-      <a
-        class="inline-flex items-center rounded-full bg-header-tel-bg bg-none px-8 py-3 text-lg text-shadow-none"
-        href={LOCAL_BUSINESS.telephoneHref}
-      >
-        <Phone
-          class="icon icon-phone mr-4 shrink-0 text-header-icon-muted"
+        <MapPin
+          class="icon size-5 shrink-0 text-header-sage"
           aria-hidden="true"
         />
-        <span class="font-bold text-header-tel-text lg:text-xl">{LOCAL_BUSINESS.telephoneDisplay}</span>
+        <span class="whitespace-nowrap">{addressOneLine}</span>
+      </a>
+
+      <a
+        class="inline-flex w-fit max-w-full items-center gap-2 rounded-full bg-header-tel-bg px-4 py-2 text-base font-semibold text-header-tel-text no-underline transition-colors hover:bg-brand-sage/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage focus-visible:ring-offset-2 focus-visible:ring-offset-header-bar md:px-5 md:py-2.5 md:text-lg"
+        href={LOCAL_BUSINESS.telephoneHref}
+        aria-label={`Appeler le ${LOCAL_BUSINESS.telephoneDisplay}`}
+      >
+        <Phone class="icon size-5 shrink-0 opacity-80" aria-hidden="true" />
+        <span class="tabular-nums">{LOCAL_BUSINESS.telephoneDisplay}</span>
       </a>
     </div>
   </div>

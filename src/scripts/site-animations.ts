@@ -137,7 +137,7 @@ function onReady(): void {
       setMobileMenuOpen(!navState.classList.contains("nav--open"));
     });
 
-    navState.querySelectorAll<HTMLAnchorElement>(".nav__ul a").forEach((link) => {
+    navState.querySelectorAll<HTMLAnchorElement>("a").forEach((link) => {
       link.addEventListener("click", () => {
         if (!mqDesktop.matches) {
           setMobileMenuOpen(false);
@@ -184,15 +184,6 @@ function onReady(): void {
 
   initNavDropdown();
 
-  const revealContent = document.getElementById("reveal_content");
-  const infoClosed = document.querySelector(".info--closed");
-  if (revealContent && infoClosed) {
-    revealContent.addEventListener("click", () => {
-      infoClosed.classList.toggle("info--open");
-      revealContent.classList.toggle("reveal-close");
-    });
-  }
-
   const main = document.getElementById("main");
   const famille2 = document.getElementById("famille-2");
   if (main && famille2) {
@@ -201,19 +192,6 @@ function onReady(): void {
       famille2,
       { opacity: 1, duration: 0.3 },
     );
-  }
-
-  const headerTel = document.querySelector(".header-tel");
-  if (headerTel) {
-    gsap.to(headerTel, {
-      rotationX: 360,
-      backgroundColor: "#ffffff",
-      duration: 0.8,
-      ease: "power3.in",
-      repeat: -1,
-      repeatDelay: 5,
-      yoyo: true,
-    });
   }
 
   const arrows = document.getElementById("arrows");
