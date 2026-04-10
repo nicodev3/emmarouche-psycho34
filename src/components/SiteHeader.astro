@@ -8,53 +8,57 @@ const addressOneLine = `${LOCAL_BUSINESS.streetAddress}, ${LOCAL_BUSINESS.postal
 ---
 
 <header class="relative bg-header-bar py-3 md:py-4">
-  <div class="site-container relative">
-    <button
-      type="button"
-      class="nav-trigger tap-highlight-none absolute top-3 right-2 z-100 m-0 cursor-pointer border-0 bg-transparent p-0 font-inherit text-inherit leading-none md:hidden focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage focus-visible:ring-offset-4 focus-visible:ring-offset-header-bar"
-      id="nav_trigger"
-      aria-label="Ouvrir ou fermer le menu"
-      aria-expanded="false"
-      aria-controls="nav_state"
-    >
-      <Menu
-        class="icon icon-burger block size-24 text-white transition-all duration-400 max-md:size-20"
-        aria-hidden="true"
-      />
-    </button>
-
+  <div class="site-container">
     <div
-      class="flex flex-col gap-3 pr-14 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-x-8 md:gap-y-3 md:pr-8 lg:gap-x-10"
+      class="flex flex-col gap-3 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-x-8 md:gap-y-3 lg:gap-x-10"
     >
       <div
-        class="flex items-center gap-2 md:min-w-0 md:shrink-0 md:text-center"
+        class="flex w-full min-w-0 items-center justify-between gap-2 md:w-auto md:shrink-0 md:justify-start md:gap-2 md:text-center"
       >
-        <span
-          class="text-xl leading-tight font-emma-script text-header-accent md:text-2xl"
-          >{LOCAL_BUSINESS.name}</span
+        <div class="flex min-w-0 flex-col gap-0.5 pr-2 sm:flex-row sm:items-baseline sm:gap-2 sm:pr-0 md:items-center">
+          <a
+            href="/"
+            class="text-xl leading-tight font-emma-script text-header-accent no-underline transition-colors hover:text-white focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage focus-visible:ring-offset-2 focus-visible:ring-offset-header-bar md:text-2xl"
+            aria-label={`Accueil — ${LOCAL_BUSINESS.name}`}
+            >{LOCAL_BUSINESS.name}</a
+          >
+          <span
+            class="text-[0.7rem] font-medium leading-snug tracking-wide text-header-muted sm:text-xs"
+            >{LOCAL_BUSINESS.title}</span
+          >
+        </div>
+        <button
+          type="button"
+          class="nav-trigger tap-highlight-none flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-white/12 bg-white/6 text-header-accent shadow-sm transition-colors hover:border-white/20 hover:bg-white/12 hover:text-white active:bg-white/16 md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage focus-visible:ring-offset-2 focus-visible:ring-offset-header-bar"
+          id="nav_trigger"
+          aria-label="Ouvrir ou fermer le menu"
+          aria-expanded="false"
+          aria-controls="nav_state"
         >
-        <span
-          class="text-xs leading-snug font-medium tracking-wide text-header-muted"
-          >{LOCAL_BUSINESS.title}</span
-        >
+          <Menu
+            class="icon icon-burger block size-5.5 text-current"
+            aria-hidden="true"
+            stroke-width="2.25"
+          />
+        </button>
       </div>
 
       <a
-        class="flex min-w-0 max-w-full items-center gap-2 overflow-x-auto rounded-sm text-sm leading-snug text-header-muted no-underline transition-colors hover:text-header-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage focus-visible:ring-offset-2 focus-visible:ring-offset-header-bar md:max-w-none md:shrink md:justify-center"
+        class="flex min-w-0 max-w-full items-start gap-2 rounded-md py-0.5 text-sm leading-snug text-header-muted no-underline transition-colors hover:text-header-accent max-md:text-pretty md:max-w-none md:shrink md:items-center md:justify-center"
         href={mapsUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Adresse du cabinet : ${LOCAL_BUSINESS.streetAddress}, ${LOCAL_BUSINESS.postalCode} ${LOCAL_BUSINESS.addressLocality}`}
       >
         <MapPin
-          class="icon size-5 shrink-0 text-header-sage"
+          class="icon mt-0.5 size-5 shrink-0 text-header-sage md:mt-0"
           aria-hidden="true"
         />
-        <span class="whitespace-nowrap">{addressOneLine}</span>
+        <span class="min-w-0 md:whitespace-nowrap">{addressOneLine}</span>
       </a>
 
       <a
-        class="inline-flex w-fit max-w-full items-center gap-2 rounded-full bg-header-tel-bg px-4 py-2 text-base font-semibold text-header-tel-text no-underline transition-colors hover:bg-brand-sage/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage focus-visible:ring-offset-2 focus-visible:ring-offset-header-bar md:px-5 md:py-2.5 md:text-lg"
+        class="inline-flex w-full max-w-full items-center justify-center gap-2 rounded-full bg-header-tel-bg px-4 py-3 text-base font-semibold text-header-tel-text no-underline transition-colors hover:bg-brand-sage/90 md:w-fit md:px-5 md:py-2.5 md:text-lg"
         href={LOCAL_BUSINESS.telephoneHref}
         aria-label={`Appeler le ${LOCAL_BUSINESS.telephoneDisplay}`}
       >
