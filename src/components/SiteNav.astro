@@ -5,12 +5,12 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 const currentPath =
   pathname === "" || pathname === "/" || pathname === "/index.html"
     ? "/"
-    : pathname;
+    : pathname.replace(/\.html$/, "");
 
 const consultationPaths = new Set([
-  "/psychotherapies-enfants-adolescents.html",
-  "/psychotherapies-adultes.html",
-  "/soutien-parental.html",
+  "/psychotherapies-enfants-adolescents",
+  "/psychotherapies-adultes",
+  "/soutien-parental",
 ]);
 const isConsultationsSection = consultationPaths.has(currentPath);
 
@@ -53,15 +53,15 @@ function linkCurrent(href: string) {
         >
           <li>
             <a
-              href="/psychotherapies-enfants-adolescents.html"
+              href="/psychotherapies-enfants-adolescents/"
               class:list={[
                 {
                   "nav__link--current": linkCurrent(
-                    "/psychotherapies-enfants-adolescents.html",
+                    "/psychotherapies-enfants-adolescents",
                   ),
                 },
               ]}
-              {...linkCurrent("/psychotherapies-enfants-adolescents.html")
+              {...linkCurrent("/psychotherapies-enfants-adolescents")
                 ? ({ "aria-current": "page" } as const)
                 : {}}
               aria-label="Consultations enfants et adolescents"
@@ -70,15 +70,13 @@ function linkCurrent(href: string) {
           </li>
           <li>
             <a
-              href="/psychotherapies-adultes.html"
+              href="/psychotherapies-adultes/"
               class:list={[
                 {
-                  "nav__link--current": linkCurrent(
-                    "/psychotherapies-adultes.html",
-                  ),
+                  "nav__link--current": linkCurrent("/psychotherapies-adultes"),
                 },
               ]}
-              {...linkCurrent("/psychotherapies-adultes.html")
+              {...linkCurrent("/psychotherapies-adultes")
                 ? ({ "aria-current": "page" } as const)
                 : {}}
               aria-label="Consultations adultes">Consultations adultes</a
@@ -86,13 +84,13 @@ function linkCurrent(href: string) {
           </li>
           <li>
             <a
-              href="/soutien-parental.html"
+              href="/soutien-parental/"
               class:list={[
                 {
-                  "nav__link--current": linkCurrent("/soutien-parental.html"),
+                  "nav__link--current": linkCurrent("/soutien-parental"),
                 },
               ]}
-              {...linkCurrent("/soutien-parental.html")
+              {...linkCurrent("/soutien-parental")
                 ? ({ "aria-current": "page" } as const)
                 : {}}
               aria-label="Soutien parental et familial"
@@ -103,52 +101,48 @@ function linkCurrent(href: string) {
       </li>
       <li class="nav__ul__li">
         <a
-          href="/bilan-psychologique.html"
+          href="/bilan-psychologique/"
           class:list={[
-            { "nav__link--current": linkCurrent("/bilan-psychologique.html") },
+            { "nav__link--current": linkCurrent("/bilan-psychologique") },
           ]}
-          {...linkCurrent("/bilan-psychologique.html")
+          {...linkCurrent("/bilan-psychologique")
             ? ({ "aria-current": "page" } as const)
             : {}}>Bilans psychologiques</a
         >
       </li>
       <li class="nav__ul__li">
         <a
-          href="/cabinet-psychologue-castelneau.html"
+          href="/cabinet-psychologue-castelneau/"
           class:list={[
             {
-              "nav__link--current": linkCurrent(
-                "/cabinet-psychologue-castelneau.html",
-              ),
+              "nav__link--current": linkCurrent("/cabinet-psychologue-castelneau"),
             },
           ]}
-          {...linkCurrent("/cabinet-psychologue-castelneau.html")
+          {...linkCurrent("/cabinet-psychologue-castelneau")
             ? ({ "aria-current": "page" } as const)
             : {}}>Le cabinet</a
         >
       </li>
       <li class="nav__ul__li">
         <a
-          href="/emma-rouche-psychologue.html"
+          href="/emma-rouche-psychologue/"
           class:list={[
             {
-              "nav__link--current": linkCurrent(
-                "/emma-rouche-psychologue.html",
-              ),
+              "nav__link--current": linkCurrent("/emma-rouche-psychologue"),
             },
           ]}
-          {...linkCurrent("/emma-rouche-psychologue.html")
+          {...linkCurrent("/emma-rouche-psychologue")
             ? ({ "aria-current": "page" } as const)
             : {}}>Qui suis-je&nbsp;?</a
         >
       </li>
       <li class="nav__ul__li">
         <a
-          href="/tarifs-psychologue.html"
+          href="/tarifs-psychologue/"
           class:list={[
-            { "nav__link--current": linkCurrent("/tarifs-psychologue.html") },
+            { "nav__link--current": linkCurrent("/tarifs-psychologue") },
           ]}
-          {...linkCurrent("/tarifs-psychologue.html")
+          {...linkCurrent("/tarifs-psychologue")
             ? ({ "aria-current": "page" } as const)
             : {}}>Tarifs</a
         >

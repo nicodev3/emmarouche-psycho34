@@ -5,12 +5,13 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   site: "https://emmarouche-psycho34.com",
+  trailingSlash: "always",
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
   build: {
-    format: "file",
+    format: "directory",
   },
   fonts: [
     {

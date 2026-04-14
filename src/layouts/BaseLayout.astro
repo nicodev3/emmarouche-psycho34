@@ -26,12 +26,18 @@ const {
 
 const site = Astro.site ?? Astro.url;
 const canonicalPathRaw = Astro.url.pathname;
-const canonicalPath =
-  canonicalPathRaw === "/" || canonicalPathRaw === "/index.html"
+const canonicalPathWithoutHtml =
+  canonicalPathRaw === "/index.html"
     ? "/"
     : canonicalPathRaw.endsWith(".html")
       ? canonicalPathRaw.slice(0, -".html".length)
       : canonicalPathRaw;
+const canonicalPath =
+  canonicalPathWithoutHtml === "/"
+    ? "/"
+    : canonicalPathWithoutHtml.endsWith("/")
+      ? canonicalPathWithoutHtml
+      : `${canonicalPathWithoutHtml}/`;
 const canonicalURL = new URL(canonicalPath, site);
 const absoluteOg =
   ogImage.startsWith("http://") || ogImage.startsWith("https://")
