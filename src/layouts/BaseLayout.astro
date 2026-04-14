@@ -25,10 +25,13 @@ const {
 } = Astro.props;
 
 const site = Astro.site ?? Astro.url;
+const canonicalPathRaw = Astro.url.pathname;
 const canonicalPath =
-  Astro.url.pathname === "/index.html" || Astro.url.pathname === "/"
+  canonicalPathRaw === "/" || canonicalPathRaw === "/index.html"
     ? "/"
-    : Astro.url.pathname;
+    : canonicalPathRaw.endsWith(".html")
+      ? canonicalPathRaw.slice(0, -".html".length)
+      : canonicalPathRaw;
 const canonicalURL = new URL(canonicalPath, site);
 const absoluteOg =
   ogImage.startsWith("http://") || ogImage.startsWith("https://")
