@@ -2,8 +2,8 @@
 import { Accessibility, Bus, MapPin, Phone } from "@lucide/astro";
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import cabExtExterior from "../assets/images/cab-ext-1.jpg";
-import cabExtParking from "../assets/images/cab-ext-2.jpg";
+import cabinet1 from "../assets/images/cabinet-1.webp";
+import cabinet2 from "../assets/images/cabinet-2.webp";
 import {
   getFaqJsonLd,
   googleMapsIframeEmbedUrl,
@@ -140,14 +140,14 @@ const extraJsonLd = getFaqJsonLd(siteOrigin, [
       </div>
       <Image
         class="img-cab-ext"
-        src={cabExtExterior}
+        src={cabinet1}
         alt="Cabinet de psychologie — vue extérieure"
         widths={[400, 800, 1200]}
         sizes="(max-width: 48em) 100vw, 33vw"
       />
       <Image
         class="img-cab-ext"
-        src={cabExtParking}
+        src={cabinet2}
         alt="Cabinet de psychologie — vue depuis le parking"
         widths={[400, 800, 1200]}
         sizes="(max-width: 48em) 100vw, 33vw"

@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import cabinet3 from "../assets/images/cabinet-3.webp";
 ---
 
 <BaseLayout
@@ -43,9 +45,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
 
     <div class="span-4--l">
-      <div class="page-anim-svg">
-      </div>
-
+        <Image
+          class="img-cab-ext"
+          src={cabinet3}
+          alt="Cabinet de psychologie — vue intérieure"
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 48em) 100vw, 33vw"
+        />
+      
       <div class="has-tape">
         <h2>A savoir</h2>
         <p>
